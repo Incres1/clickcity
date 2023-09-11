@@ -1,27 +1,44 @@
 // src/components/Layout.js
-import React from 'react';
+import React, { useState } from 'react';
 import ColumnButton from './ColumnButton';
+import LayoutOne from './LayoutOne';
+import LayoutTwo from './LayoutTwo';
 
 const Layout = ({ children }) => {
-  return (
-    <div className="flex">
-      {/* Left Side Column */}
-      <div className="w-1/4 h-screen bg-gray-200 p-4 space-y-4 ">
-        {/* Add your left-side content here */}
-        <div className="grid space-y-4">
+    const [selectedContent, setSelectedContent] = useState('');
 
-        <ColumnButton text="First Button"></ColumnButton>
-        <ColumnButton text="Second Button"></ColumnButton>
-
+    const handleButtonClick = (content) => {
+        setSelectedContent(content);
+      };
+      return (
+        <div className="flex">
+          {/* Left Side Column */}
+          <div className="w-1/4 h-screen bg-gray-200 p-4 space-y-4">
+            {/* Add your left-side content here */}
+            <div className="grid space-y-4">
+              <ColumnButton
+                text="First Button"
+                onClick={() => handleButtonClick(<LayoutOne />)}
+              />
+              <ColumnButton
+                text="Second Button"
+                onClick={() => handleButtonClick(<LayoutTwo />)}
+              />
+              {/* Add more buttons as needed */}
+            </div>
+          </div>
+          {/* Right Side Content */}
+          <div className="w-3/4 p-4 h-screen">
+            <div>{selectedContent}</div>
+            {/* Display the selected content */}
+            
+          </div>
         </div>
-        
-      </div>
-      {/* Right Side Content */}
-      <div className="w-3/4 p-4">
-        {children}
-      </div>
-    </div>
-  );
-};
-
-export default Layout;
+      );
+    };
+    
+    export default Layout;
+    
+    
+    
+    
