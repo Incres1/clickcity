@@ -1,5 +1,6 @@
 import React from "react";
 import ClickButton from "./ClickButton";
+import UpgradeButton from "./UpgradeButton";
 
 const LayoutOne = ({ children }) => {
   return (
@@ -9,8 +10,8 @@ const LayoutOne = ({ children }) => {
         <ClickButton text="Metal" storageKey="metalCount" />
       </div>
 
-      <div className="flex h-1/2 justify-center items-center text-black">
-        This is the second half.
+      <div className="flex h-1/2 space-x-4 ">
+        <UpgradeButton text="Upgrade Wood" storageKey="woodCount" cost="20" />
       </div>
     </div>
   );
