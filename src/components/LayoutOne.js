@@ -24,16 +24,6 @@ const LayoutOne= () => {
     updatePickaxeCost,
   } = Materials();
 
-   
-  
-  
-  
-  
-   
-  
-  
-  
-  
     //UPGRADE BUTTON
     const UpgradeButton = ({ text, cost, initialValue, updateCount, updateIncrement, increment, updateCost, toast }) => {
       const [count, setCount] = useState(initialValue || 0);
