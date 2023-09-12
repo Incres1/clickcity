@@ -51,14 +51,14 @@ const Items = () => {
           <li key={item.name}>
             <div
               className={`bg-white p-4 text-left ${
-                selectedItem === item ? "bg-blue-200" : ""
+                selectedItem === item ? "bg-black" : ""
               }`}
               onClick={() => handleItemClick(item)}
             >
               <div className="text-2xl font-semibold">{item.name}</div>
               <div className="text-gray-600">Strength: {item.strength || 0}</div>
               <div className="text-gray-600">Health: {item.health || 0}</div>
-              
+
               <div className="text-gray-600">Count: {item.count}</div>
             </div>
           </li>
@@ -70,6 +70,9 @@ const Items = () => {
         <div className="p-4 text-left rounded-xl bg-amber-400">
           <div className="text-2xl font-semibold">
             Do you want to craft {selectedItem.name}?
+            </div>
+            <div className="text-2xl font-semibold">
+            Cost: {selectedItem.wood || 0} wood, {selectedItem.ore || 0} ore, {selectedItem.gem || 0} gem, {selectedItem.leaf || 0} leaf
             </div>
           {/* Display other details of the selected item */}
           {/* Add buttons or actions for the selected item */}
