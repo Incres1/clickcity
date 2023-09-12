@@ -77,7 +77,6 @@ const LayoutOne= () => {
       
       const handleButtonClick = () => {
         const randomNumber = randomItem(100);
-        console.log(randomNumber);
         //Check if eligible for rare material
         if (randomNumber > 95) {
           updateRareMaterials(rareMaterial + 1);

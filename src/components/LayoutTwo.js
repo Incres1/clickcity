@@ -5,6 +5,7 @@ import { GiWoodPile } from "react-icons/gi";
 import { GiMinerals } from "react-icons/gi";
 import { BiSolidLeaf } from "react-icons/bi";
 import { FaGem } from "react-icons/fa";
+import { useState } from "react";
 
 const LayoutTwo = () => {
   // MATERIALS
@@ -35,12 +36,19 @@ const LayoutTwo = () => {
   };
 
   // CARD FOR DISPLAYING SKILLS
-  const StatCard = ({ text, type, skillAllocation }) => {
+  const StatCard = ({ text, type, skill}) => {
+    const [count, setCount] = useState(skill || 0);
+    const actualskill = skill
+    
+    const handleLevelSkillAllocation = () => {
+      skillAllocation(actualskill)
+    };
+
     return (
       <div className="bg-white p-4 rounded-lg shadow-md text-center">
         <div className="text-2xl font-semibold">{text}</div>
         <div className="text-gray-600">{type}</div>
-        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={skillAllocation}>
+        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={handleLevelSkillAllocation}>
           +
         </button>
       </div>
@@ -49,6 +57,9 @@ const LayoutTwo = () => {
 
   //CARD FOR DISPLAYING OTHER CHARACTER DETAILS
   const LevelCard = ({ text, type }) => {
+    
+
+
     return (
       <div className="bg-white p-4 rounded-lg shadow-md text-center">
         <div className="text-2xl font-semibold">{text}</div>
@@ -57,6 +68,8 @@ const LayoutTwo = () => {
       </div>
     );
   };
+
+  
 
   return (
     <div className="grid grid-cols-2 gap-4">
@@ -68,11 +81,11 @@ const LayoutTwo = () => {
       </div>
 
       <div className="grid grid-cols-2 gap-4">
-        <StatCard text={strength} type="Strength" />
-        <StatCard text={dexterity} type="Dexterity" />
-        <StatCard text={health} type="Health" />
-        <StatCard text={intelligence} type="Intelligence" />
-        <StatCard text={luckiness} type="Luckiness" />
+        <StatCard text={strength} type="Strength" skill={"strength"}/>
+        <StatCard text={dexterity} type="Dexterity" skill={"dexterity"}/>
+        <StatCard text={health} type="Health" skill={"health"}/>
+        <StatCard text={intelligence} type="Intelligence" skill={"intelligence"}/>
+        <StatCard text={luckiness} type="Luckiness" skill={"luckiness"}/>
         <LevelCard text={gold} type="Gold" />
         <LevelCard text={level} type="Level" />
         <LevelCard text={experience} type="Experience" />

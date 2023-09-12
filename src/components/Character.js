@@ -90,14 +90,41 @@ const Character = () => {
     };
 
     //ELIGIBLE FOR SKILL POINTS
-    const skillAllocation = (skill, newCount) => {
+    const skillAllocation = (skill) => {
+        
         if (skillPoints > 0) {
-            const newSkill = skill + newCount;
-            updateSkillPoints(skillPoints - 1);
-            return newSkill;
+            if (skill === "strength") {
+                const newStrength = strength + 1;
+                updateStrength(newStrength);
+                const newSkillPoints = skillPoints - 1;
+                updateSkillPoints(newSkillPoints);
+            }
+            if (skill === "dexterity") {
+                const newDexterity = dexterity + 1;
+                updateDexterity(newDexterity);
+                const newSkillPoints = skillPoints - 1;
+                updateSkillPoints(newSkillPoints);
+            }
+            if (skill === "health") {
+                const newHealth = health + 1;
+                updateHealth(newHealth);
+                const newSkillPoints = skillPoints - 1;
+                updateSkillPoints(newSkillPoints);
+            }
+            if (skill === "intelligence") {
+                const newIntelligence = intelligence + 1;
+                updateIntelligence(newIntelligence);
+                const newSkillPoints = skillPoints - 1;
+                updateSkillPoints(newSkillPoints);
+            }
+            if (skill === "luckiness") {
+                const newLuckiness = luckiness + 1;
+                updateLuckiness(newLuckiness);
+                const newSkillPoints = skillPoints - 1;
+                updateSkillPoints(newSkillPoints);
+            }
         }
     };
-
 
     const gainExperience = (newCount) => {
         const newExperience = experience + newCount;
@@ -112,6 +139,19 @@ const Character = () => {
             updateExperienceToNextLevel(newExperienceToNextLevel);
         }
     };
+
+    useEffect(() => {
+        localStorage.setItem("strength", strength);
+        localStorage.setItem("dexterity", dexterity);
+        localStorage.setItem("health", health);
+        localStorage.setItem("intelligence", intelligence);
+        localStorage.setItem("luckiness", luckiness);
+        localStorage.setItem("gold", gold);
+        localStorage.setItem("level", level);
+        localStorage.setItem("experience", experience);
+        localStorage.setItem("experienceToNextLevel", experienceToNextLevel);
+        localStorage.setItem("skillPoints", skillPoints);
+    }, [strength, dexterity, health, intelligence, luckiness, gold, level, experience, experienceToNextLevel, skillPoints]);
 
 
 
