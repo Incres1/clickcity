@@ -17,11 +17,11 @@ const Layout = ({ children }) => {
             {/* Add your left-side content here */}
             <div className="grid space-y-4">
               <ColumnButton
-                text="First Button"
+                text="Forest"
                 onClick={() => handleButtonClick(<LayoutOne />)}
               />
               <ColumnButton
-                text="Second Button"
+                text="Inventory"
                 onClick={() => handleButtonClick(<LayoutTwo />)}
               />
               {/* Add more buttons as needed */}

@@ -187,8 +187,8 @@ const LayoutOne = ({ children }) => {
 
   const showToastMessage = (message) => {
     toast.success(message, {
-        size: "lg",
-        position: toast.POSITION.TOP_RIGHT
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 1000,
         
     });
 };
