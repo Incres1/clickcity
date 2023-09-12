@@ -76,7 +76,7 @@ const LayoutOne= () => {
         if (randomNumber > 95) {
           updateRareMaterials(rareMaterial + 1);
           const message = `You have received a ${rareMaterialType}!`;
-          toast(message);
+          toast(message, "success");
         }
   
           
