@@ -31,7 +31,7 @@ const LayoutTwo = () => {
     )};
 
   return (
-    <div className="flex">
+    <div className="flex space-x-4">
     <Card text="Wood" type={woodCount} icon={<GiWoodPile />} />
     <Card text="Ore" type={oreCount} icon={<GiMinerals />} />
     <Card text="Leaf" type={leaf} icon={<BiSolidLeaf />} />

@@ -40,9 +40,10 @@ const LayoutOne= () => {
           setCount(newCount);
           updateCount(newCount);
           const message = `You have upgraded your ${text}!`;
-          toast(message);
+          toast(message, "success");
         } else {
-          alert("Not enough resources!");
+          const message = `You do not have enough resources to upgrade!`;
+          toast(message, "error");
         }
         
       };
@@ -106,12 +107,22 @@ const LayoutOne= () => {
   
     //TOAST CONTAINER
   
-    const showToastMessage = (message) => {
-      toast.success(message, {
+    const showToastMessage = (message, type) => {
+      if (type === "error") {
+          toast.error(message, {
+              position: toast.POSITION.TOP_RIGHT,
+              autoClose: 1000,
+              
+          });
+      }
+      else if (type === "success") {
+        toast.success(message, {
           position: toast.POSITION.TOP_RIGHT,
           autoClose: 1000,
           
       });
+      }
+      
   };
   
     //GAME
