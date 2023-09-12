@@ -2,6 +2,8 @@
 import React, {useState, useEffect} from "react";
 import {toast, ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import {GiWoodPile} from 'react-icons/gi';
+import {GiMinerals} from 'react-icons/gi';
 
 import ColumnButton from './ColumnButton';
 
@@ -220,10 +222,7 @@ const LayoutOne = ({ children }) => {
 //LAYOUT TWO
 
 const LayoutTwo = ({ children }) => {
-
-
-
-
+  
 
   return (
       <div className="flex">
