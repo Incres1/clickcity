@@ -10,6 +10,7 @@ import { useState } from "react";
 const LayoutTwo = () => {
   // MATERIALS
   const { woodCount, oreCount, leaf, gem } = Materials();
+  
   const {
     strength,
     dexterity,
@@ -72,6 +73,8 @@ const LayoutTwo = () => {
   
 
   return (
+
+    /* MATERIALS */
     <div className="grid grid-cols-2 gap-4">
       <div className="grid grid-cols-2 gap-4">
         <Card text={woodCount} type="Wood" icon={<GiWoodPile size={80} />} />
@@ -80,6 +83,7 @@ const LayoutTwo = () => {
         <Card text={gem} type="Gem" icon={<FaGem size={80} />} />
       </div>
 
+      {/* CHARACTER */}
       <div className="grid grid-cols-2 gap-4">
         <StatCard text={strength} type="Strength" skill={"strength"}/>
         <StatCard text={dexterity} type="Dexterity" skill={"dexterity"}/>
@@ -92,6 +96,15 @@ const LayoutTwo = () => {
         <LevelCard text={experienceToNextLevel} type="Experience required to level up" />
         <LevelCard text={skillPoints} type="Skill Points" />
       </div>
+      {/* CRAFTING */}
+      <div className="grid gap-4">
+        <div className="bg-white p-4 rounded-lg shadow-md text-center">
+          <div className="text-2xl font-semibold">Crafting</div>
+          <div className="text-gray-600"></div>
+      </div>
+
+
+    </div>
     </div>
   );
 };
