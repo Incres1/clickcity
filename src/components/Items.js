@@ -6,11 +6,19 @@ const Items = () => {
     const initialSimpleSword = {
         name: "Simple Sword",
         strength: 2,
+        wood: 200,
+        ore: 200,
+        gem: 1,
+        count: 0,
     };
 
     const initialSimpleShield = {
         name: "Simple Shield",
         health: 2,
+        wood: 200,
+        ore: 200,
+        leaf: 1,
+        count: 0,
     };
 
     const [simpleSword, setSimpleSword] = useState(
