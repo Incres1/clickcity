@@ -61,7 +61,7 @@ const LayoutTwo = () => {
         <StatCard text={gold} type="Gold" />
         <StatCard text={level} type="Level" />
         <StatCard text={experience} type="Experience" />
-        <StatCard text={experienceToNextLevel} type="Experience to Next Level" />
+        <StatCard text={experienceToNextLevel} type="Experience required to level up" />
         <StatCard text={skillPoints} type="Skill Points" />
       </div>
     </div>

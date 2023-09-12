@@ -54,7 +54,7 @@ const LayoutOne= () => {
       };
       return (
         <button
-          className="w-1/2 border-gray-500 border-2 rounded-xl p-4 text-center transition duration-500 hover:bg-gray-300"
+          className="w-1/4 h-1/4 border-gray-500 border-2 rounded-xl p-4 text-center transition duration-500 hover:bg-gray-300"
           onClick={handleButtonClick}
         >
           <div className="flex-col justify-center">
@@ -85,7 +85,7 @@ const LayoutOne= () => {
           toast(message, "success");
         } 
         //check if eligible for experience
-        if (randomNumber < 3) {
+        if (randomNumber < 70) {
           gainExperience(1);
           const message = `You have gained 1 experience!`;
           toast(message, "success");
@@ -104,7 +104,7 @@ const LayoutOne= () => {
     
       return (
         <button
-          className="w-1/2 border-gray-500 border-2 rounded-xl p-4 text-center transition duration-500 hover:bg-gray-300"
+          className="w-1/4 h-1/2 border-gray-500 border-2 rounded-xl p-4 text-center transition duration-500 hover:bg-gray-300"
           onClick={handleButtonClick}
         >
           <div className="flex-col justify-center">
@@ -142,13 +142,13 @@ const LayoutOne= () => {
     //GAME
   
     return (
-      <div className="flex flex-col h-screen">
-        <div className="flex h-1/2 space-x-4">
+      <div className="flex flex-col">
+        <div className="flex space-x-4">
           {/* Pass initial values as props */}
           <ClickButton text="Wood" initialValue={woodCount} updateCount={updateWoodCount} increment={woodIncrement} randomItem={generateRandomNumber} toast={showToastMessage} updateRareMaterials={updateLeafCount} rareMaterial={leaf} rareMaterialType="Leaf" gainExperience={gainExperience} />
           <ClickButton text="Ore" initialValue={oreCount} updateCount={updateOreCount} increment={oreIncrement} randomItem={generateRandomNumber} toast={showToastMessage} updateRareMaterials={updateGemCount} rareMaterial={gem} rareMaterialType="Gem" gainExperience={gainExperience}/>
         </div>
-        <div className="flex h-1/2 space-x-4">
+        <div className="flex space-x-4">
           {/* Pass the cost as a number (not a string) */}
           <UpgradeButton text="Axe" cost={axeCost} initialValue={woodCount} updateCount={updateWoodCount} increment={woodIncrement} updateIncrement={updateWoodIncrement} updateCost={updateAxeCost} toast={showToastMessage} />
           <UpgradeButton text="Pickaxe" cost={pickaxeCost} initialValue={oreCount} updateCount={updateOreCount} increment={oreIncrement} updateIncrement={updateOreIncrement} updateCost={updatePickaxeCost} toast={showToastMessage}/>

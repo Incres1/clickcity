@@ -29,7 +29,7 @@ const Character = () => {
         parseInt(localStorage.getItem("experience")) || 0
     );
     const [experienceToNextLevel, setExperienceToNextLevel] = useState(
-        parseInt(localStorage.getItem("experienceToNextLevel")) || 100
+        parseInt(localStorage.getItem("experienceToNextLevel")) || 1
     );
 
     const [skillPoints, setSkillPoints] = useState(
@@ -89,20 +89,18 @@ const Character = () => {
         localStorage.setItem("skillPoints", newCount);
     };
 
-    const levelUp = () => {
-        const newLevel = level + 1;
-        const newExperienceToNextLevel = experienceToNextLevel * 2;
-        const newSkillPoints = skillPoints + 1;
-        updateLevel(newLevel);
-        updateExperienceToNextLevel(newExperienceToNextLevel);
-        updateSkillPoints(newSkillPoints);
-    };
 
     const gainExperience = (newCount) => {
         const newExperience = experience + newCount;
         updateExperience(newExperience);
         if (newExperience >= experienceToNextLevel) {
-            levelUp();
+            const newLevel = level + 1;
+            updateExperience(0);
+            updateLevel(newLevel);
+            const newSkillPoints = skillPoints + 1;
+            updateSkillPoints(newSkillPoints);
+            const newExperienceToNextLevel = experienceToNextLevel * 2;
+            updateExperienceToNextLevel(newExperienceToNextLevel);
         }
     };
 
@@ -129,7 +127,6 @@ const Character = () => {
         updateExperience,
         updateExperienceToNextLevel,
         updateSkillPoints,
-        levelUp,
         gainExperience,
     }
 }

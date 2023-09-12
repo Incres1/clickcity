@@ -27,7 +27,7 @@ const Layout = ({ children }) => {
                 onClick={() => handleButtonClick(<LayoutOne />)}
               />
               <ColumnButton
-                text="Character"
+                text="Character/Crafting"
                 onClick={() => handleButtonClick(<LayoutTwo />)}
               />
               {/* Add more buttons as needed */}
