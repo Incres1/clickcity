@@ -1,12 +1,16 @@
 import React, {useState, useEffect} from "react";
+import {toast, ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
 
 const LayoutOne = ({ children }) => {
   // Define initial values for Wood and Metal counts & increments
   const [woodCount, setWoodCount] = useState(
-    parseInt(localStorage.getItem("woodCount")) || 0
+    parseInt(localStorage.getItem("woodCount")) || 40
   );
   const [metalCount, setMetalCount] = useState(
-    parseInt(localStorage.getItem("metalCount")) || 0
+    parseInt(localStorage.getItem("metalCount")) || 40
   );
 
   const [woodIncrement, setWoodIncrement] = useState(
@@ -26,6 +30,8 @@ const LayoutOne = ({ children }) => {
   const [pickaxeCost, setPickaxeCost] = useState(
     parseInt(localStorage.getItem("pickaxeCost")) || 40
   );
+
+  
 
 
   //UPDATES
@@ -70,8 +76,10 @@ const LayoutOne = ({ children }) => {
 
 
   //UPGRADE BUTTON
-  const UpgradeButton = ({ text, cost, initialValue, updateCount, updateIncrement, increment, updateCost }) => {
+  const UpgradeButton = ({ text, cost, initialValue, updateCount, updateIncrement, increment, updateCost, toast }) => {
     const [count, setCount] = useState(initialValue || 0);
+
+    
   
     const handleButtonClick = () => {
       if (count >= cost) {
@@ -81,7 +89,9 @@ const LayoutOne = ({ children }) => {
         updateCost(newCost);
         updateIncrement(newIncrement);
         setCount(newCount);
-        updateCount(newCount)
+        updateCount(newCount);
+        const message = `You have upgraded your ${text}!`;
+        toast(message);
       } else {
         alert("Not enough resources!");
       }
@@ -93,13 +103,14 @@ const LayoutOne = ({ children }) => {
         onClick={handleButtonClick}
       >
         <div className="flex-col justify-center">
-          {text}
+          Upgrade {text}
           <br />
           Cost: {cost}
           <br />
           You have: {count}
         </div>
       </button>
+
     );
   };
 
@@ -126,7 +137,8 @@ const LayoutOne = ({ children }) => {
       >
         <div className="flex-col justify-center">
           {text}<br />
-          {count}
+          {count} <br />
+          Level: {increment}
         </div>
       </button>
     );
@@ -134,7 +146,13 @@ const LayoutOne = ({ children }) => {
 
 
 
+  //TOAST CONTAINER
 
+  const showToastMessage = (message) => {
+    toast.success(message, {
+        position: toast.POSITION.TOP_RIGHT
+    });
+};
 
   //GAME
 
@@ -145,12 +163,12 @@ const LayoutOne = ({ children }) => {
         <ClickButton text="Wood" initialValue={woodCount} updateCount={updateWoodCount} increment={woodIncrement} />
         <ClickButton text="Metal" initialValue={metalCount} updateCount={updateMetalCount} increment={metalIncrement} />
       </div>
-
       <div className="flex h-1/2 space-x-4">
         {/* Pass the cost as a number (not a string) */}
-        <UpgradeButton text="Upgrade axe" cost={axeCost} initialValue={woodCount} updateCount={updateWoodCount} increment={woodIncrement} updateIncrement={updateWoodIncrement} updateCost={updateAxeCost} />
-        <UpgradeButton text="Upgrade pickaxe" cost={pickaxeCost} initialValue={metalCount} updateCount={updateMetalCount} increment={metalIncrement} updateIncrement={updateMetalIncrement} updateCost={updatePickaxeCost}/>
+        <UpgradeButton text="Axe" cost={axeCost} initialValue={woodCount} updateCount={updateWoodCount} increment={woodIncrement} updateIncrement={updateWoodIncrement} updateCost={updateAxeCost} toast={showToastMessage} />
+        <UpgradeButton text="Pickaxe" cost={pickaxeCost} initialValue={metalCount} updateCount={updateMetalCount} increment={metalIncrement} updateIncrement={updateMetalIncrement} updateCost={updatePickaxeCost} toast={showToastMessage}/>
       </div>
+      <ToastContainer />
     </div>
   );
 };
