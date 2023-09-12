@@ -89,6 +89,15 @@ const Character = () => {
         localStorage.setItem("skillPoints", newCount);
     };
 
+    //ELIGIBLE FOR SKILL POINTS
+    const skillAllocation = (skill, newCount) => {
+        if (skillPoints > 0) {
+            const newSkill = skill + newCount;
+            updateSkillPoints(skillPoints - 1);
+            return newSkill;
+        }
+    };
+
 
     const gainExperience = (newCount) => {
         const newExperience = experience + newCount;
@@ -128,6 +137,7 @@ const Character = () => {
         updateExperienceToNextLevel,
         updateSkillPoints,
         gainExperience,
+        skillAllocation,
     }
 }
 
