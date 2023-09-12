@@ -1,6 +1,7 @@
 import React from "react";
 import Materials from "./Materials";
 import Character from "./Character";
+import Items from "./Items";
 import { GiWoodPile } from "react-icons/gi";
 import { GiMinerals } from "react-icons/gi";
 import { BiSolidLeaf } from "react-icons/bi";
@@ -10,7 +11,7 @@ import { useState } from "react";
 const LayoutTwo = () => {
   // MATERIALS
   const { woodCount, oreCount, leaf, gem } = Materials();
-  
+  const {initialSimpleSword, initialSimpleShield} = Items();
   const {
     strength,
     dexterity,
@@ -100,7 +101,9 @@ const LayoutTwo = () => {
       <div className="grid gap-4">
         <div className="bg-white p-4 rounded-lg shadow-md text-center">
           <div className="text-2xl font-semibold">Crafting</div>
-          <div className="text-gray-600"></div>
+          <div className="text-gray-600">
+            <Items />
+          </div>
       </div>
 
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 
 
 const Items = () => {
@@ -16,8 +16,8 @@ const Items = () => {
     const [simpleSword, setSimpleSword] = useState(
         JSON.parse(localStorage.getItem("simpleSword")) || initialSimpleSword
       );
-      const [clothShield, setClothShield] = useState(
-        JSON.parse(localStorage.getItem("clothShield")) || initialClothShield
+      const [simpleShield, setSimpleShield] = useState(
+        JSON.parse(localStorage.getItem("simpleShield")) || initialSimpleShield
       );
 
 
@@ -26,15 +26,14 @@ const Items = () => {
 
       useEffect(() => {
         const storedSimpleSword = JSON.parse(localStorage.getItem("simpleSword")) || initialSimpleSword;
-        const storedClothShield = JSON.parse(localStorage.getItem("clothShield")) || initialClothShield;
+        const storedSimpleShield = JSON.parse(localStorage.getItem("simpleShield")) || initialSimpleShield;
     
         setSimpleSword(storedSimpleSword);
-        setClothShield(storedClothShield);
+        setSimpleShield(storedSimpleShield);
       }, []);
 
     return (
         <div>
-            Items
         </div>
     )
 };
