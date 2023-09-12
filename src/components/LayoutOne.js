@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import Materials from "./Materials";
+import Character from "./Character";
 import {toast, ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -23,6 +24,10 @@ const LayoutOne= () => {
     updateAxeCost,
     updatePickaxeCost,
   } = Materials();
+  const {
+    gainExperience,
+  } = Character();
+  
 
     //UPGRADE BUTTON
     const UpgradeButton = ({ text, cost, initialValue, updateCount, updateIncrement, increment, updateCost, toast }) => {
@@ -67,17 +72,25 @@ const LayoutOne= () => {
   
     //CLICK BUTTON
   
-    const ClickButton = ({ text, onClick, initialValue, updateCount, increment, randomItem, toast, updateRareMaterials, rareMaterial, rareMaterialType }) => {
+    const ClickButton = ({ text, onClick, initialValue, updateCount, increment, randomItem, toast, updateRareMaterials, rareMaterial, rareMaterialType, gainExperience }) => {
       const [count, setCount] = useState(initialValue || 0);
       
       const handleButtonClick = () => {
         const randomNumber = randomItem(100);
         console.log(randomNumber);
+        //Check if eligible for rare material
         if (randomNumber > 95) {
           updateRareMaterials(rareMaterial + 1);
           const message = `You have received a ${rareMaterialType}!`;
           toast(message, "success");
+        } 
+        //check if eligible for experience
+        if (randomNumber < 3) {
+          gainExperience(1);
+          const message = `You have gained 1 experience!`;
+          toast(message, "success");
         }
+
   
           
         const newCount = count + increment;
@@ -104,6 +117,7 @@ const LayoutOne= () => {
     };
   
   
+
   
     //TOAST CONTAINER
   
@@ -131,8 +145,8 @@ const LayoutOne= () => {
       <div className="flex flex-col h-screen">
         <div className="flex h-1/2 space-x-4">
           {/* Pass initial values as props */}
-          <ClickButton text="Wood" initialValue={woodCount} updateCount={updateWoodCount} increment={woodIncrement} randomItem={generateRandomNumber} toast={showToastMessage} updateRareMaterials={updateLeafCount} rareMaterial={leaf} rareMaterialType="Leaf" />
-          <ClickButton text="Ore" initialValue={oreCount} updateCount={updateOreCount} increment={oreIncrement} randomItem={generateRandomNumber} toast={showToastMessage} updateRareMaterials={updateGemCount} rareMaterial={gem} rareMaterialType="Gem" />
+          <ClickButton text="Wood" initialValue={woodCount} updateCount={updateWoodCount} increment={woodIncrement} randomItem={generateRandomNumber} toast={showToastMessage} updateRareMaterials={updateLeafCount} rareMaterial={leaf} rareMaterialType="Leaf" gainExperience={gainExperience} />
+          <ClickButton text="Ore" initialValue={oreCount} updateCount={updateOreCount} increment={oreIncrement} randomItem={generateRandomNumber} toast={showToastMessage} updateRareMaterials={updateGemCount} rareMaterial={gem} rareMaterialType="Gem" gainExperience={gainExperience}/>
         </div>
         <div className="flex h-1/2 space-x-4">
           {/* Pass the cost as a number (not a string) */}

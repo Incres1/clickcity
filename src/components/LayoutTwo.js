@@ -20,22 +20,27 @@ const LayoutTwo = () => {
   const Card = ({ text, type, icon }) => {
 
     return (
-      <div className="flex border-gray-500 border-2 rounded-xl p-4 text-center">
+      <div className="flex justify-center border-gray-500 border-2 rounded-xl p-4 text-center">
         <div className="flex-col justify-center">
-          <div className="flex justify-center">
+          <div className="flex-none justify-center">
           {icon}
           </div>
+          <div className="flex-none justify-center">
           {type}
+          </div>
+          <div className="flex-none justify-center">
+          {text}
+          </div>
         </div>
       </div>
     )};
 
   return (
     <div className="flex space-x-4">
-    <Card text="Wood" type={woodCount} icon={<GiWoodPile />} />
-    <Card text="Ore" type={oreCount} icon={<GiMinerals />} />
-    <Card text="Leaf" type={leaf} icon={<BiSolidLeaf />} />
-    <Card text="Gem" type={gem} icon={<FaGem />} />
+    <Card text="Wood" type={woodCount} icon={<GiWoodPile size={80}/>} />
+    <Card text="Ore" type={oreCount} icon={<GiMinerals size={80}/>} />
+    <Card text="Leaf" type={leaf} icon={<BiSolidLeaf size={80}/>} />
+    <Card text="Gem" type={gem} icon={<FaGem size={80}/>} />
     </div>
 );
 };

@@ -4,8 +4,6 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 import ColumnButton from './ColumnButton';
-
-
 import LayoutOne from './LayoutOne';
 import LayoutTwo from './LayoutTwo';
 
