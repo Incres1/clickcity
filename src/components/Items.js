@@ -58,10 +58,7 @@ const Items = () => {
               <div className="text-2xl font-semibold">{item.name}</div>
               <div className="text-gray-600">Strength: {item.strength || 0}</div>
               <div className="text-gray-600">Health: {item.health || 0}</div>
-              <div className="text-gray-600">Wood: {item.wood || 0}</div>
-              <div className="text-gray-600">Ore: {item.ore || 0}</div>
-              <div className="text-gray-600">Gem: {item.gem || 0}</div>
-              <div className="text-gray-600">Leaf: {item.leaf || 0}</div>
+              
               <div className="text-gray-600">Count: {item.count}</div>
             </div>
           </li>
@@ -70,8 +67,10 @@ const Items = () => {
 
       {/* Display selected item details */}
       {selectedItem && (
-        <div className="bg-white p-4 text-left">
-          <div className="text-2xl font-semibold">{selectedItem.name}</div>
+        <div className="p-4 text-left rounded-xl bg-amber-400">
+          <div className="text-2xl font-semibold">
+            Do you want to craft {selectedItem.name}?
+            </div>
           {/* Display other details of the selected item */}
           {/* Add buttons or actions for the selected item */}
         </div>
