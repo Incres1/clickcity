@@ -141,7 +141,7 @@ const LayoutOne= () => {
     //GAME
   
     return (
-      <div className="flex flex-col">
+      <div className="flex flex-col space-y-4">
         <div className="flex space-x-4">
           {/* Pass initial values as props */}
           <ClickButton text="Wood" initialValue={woodCount} updateCount={updateWoodCount} increment={woodIncrement} randomItem={generateRandomNumber} toast={showToastMessage} updateRareMaterials={updateLeafCount} rareMaterial={leaf} rareMaterialType="Leaf" gainExperience={gainExperience} />
@@ -155,7 +155,6 @@ const LayoutOne= () => {
         <ToastContainer />
       </div>
     );
-  
     };
     
 
