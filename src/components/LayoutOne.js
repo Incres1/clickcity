@@ -5,20 +5,38 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 const LayoutOne = ({ children }) => {
-  // Define initial values for Wood and Metal counts & increments
+  // Define initial values for Wood and ore counts & increments
   const [woodCount, setWoodCount] = useState(
     parseInt(localStorage.getItem("woodCount")) || 40
   );
-  const [metalCount, setMetalCount] = useState(
-    parseInt(localStorage.getItem("metalCount")) || 40
+  const [oreCount, setOreCount] = useState(
+    parseInt(localStorage.getItem("oreCount")) || 40
   );
 
   const [woodIncrement, setWoodIncrement] = useState(
     parseInt(localStorage.getItem("woodIncrement")) || 1
   );
-  const [metalIncrement, setMetalIncrement] = useState(
-    parseInt(localStorage.getItem("metalIncrement")) || 1
+  const [oreIncrement, setoreIncrement] = useState(
+    parseInt(localStorage.getItem("oreIncrement")) || 1
   );
+
+  //RARE MATERIALS
+
+  const [leaf, setLeaf] = useState(
+    parseInt(localStorage.getItem("leaf")) || 0
+  );
+  const [gem, setGem] = useState(
+    parseInt(localStorage.getItem("gem")) || 0
+  );
+
+
+
+
+  //RANDOM NUMBER GENERATOR
+  const generateRandomNumber = (threshold) => {
+    var randomNumber = Math.floor(Math.random() * threshold) + 1;
+    return randomNumber;
+  };
 
 
   //COSTS
@@ -33,16 +51,26 @@ const LayoutOne = ({ children }) => {
 
   
 
-
+  
   //UPDATES
   const updateWoodCount = (newCount) => {
     setWoodCount(newCount);
     localStorage.setItem("woodCount", newCount);
   };
 
-  const updateMetalCount = (newCount) => {
-    setMetalCount(newCount);
-    localStorage.setItem("metalCount", newCount);
+  const updateOreCount = (newCount) => {
+    setOreCount(newCount);
+    localStorage.setItem("oreCount", newCount);
+  };
+
+  const updateLeafCount = (newCount) => {
+    setLeaf(newCount);
+    localStorage.setItem("leaf", newCount);
+  };
+
+  const updateGemCount = (newCount) => {
+    setGem(newCount);
+    localStorage.setItem("gem", newCount);
   };
 
   const updateWoodIncrement = (newCount) => {
@@ -50,9 +78,9 @@ const LayoutOne = ({ children }) => {
     localStorage.setItem("woodIncrement", newCount);
   };
 
-  const updateMetalIncrement = (newCount) => {
-    setMetalIncrement(newCount);
-    localStorage.setItem("metalIncrement", newCount);
+  const updateoreIncrement = (newCount) => {
+    setoreIncrement(newCount);
+    localStorage.setItem("oreIncrement", newCount);
   };
 
   const updateAxeCost = (newCount) => {
@@ -69,8 +97,8 @@ const LayoutOne = ({ children }) => {
   useEffect(() => {
     // Update the local storage when resourceCounts change
     localStorage.setItem("woodCount", woodCount);
-    localStorage.setItem("metalCount", metalCount);
-  }, [woodCount, metalCount]);
+    localStorage.setItem("oreCount", oreCount);
+  }, [woodCount, oreCount]);
 
 
 
@@ -117,10 +145,19 @@ const LayoutOne = ({ children }) => {
 
   //CLICK BUTTON
 
-  const ClickButton = ({ text, onClick, initialValue, updateCount, increment }) => {
+  const ClickButton = ({ text, onClick, initialValue, updateCount, increment, randomItem, toast, updateRareMaterials, rareMaterial, rareMaterialType }) => {
     const [count, setCount] = useState(initialValue || 0);
     
     const handleButtonClick = () => {
+      const randomNumber = randomItem(100);
+      console.log(randomNumber);
+      if (randomNumber > 95) {
+        updateRareMaterials(rareMaterial + 1);
+        const message = `You have received a ${rareMaterialType}!`;
+        toast(message);
+      }
+
+        
       const newCount = count + increment;
       setCount(newCount);
       if (onClick) {
@@ -138,7 +175,7 @@ const LayoutOne = ({ children }) => {
         <div className="flex-col justify-center">
           {text}<br />
           {count} <br />
-          Level: {increment}
+          Level: {increment} <br />
         </div>
       </button>
     );
@@ -150,7 +187,9 @@ const LayoutOne = ({ children }) => {
 
   const showToastMessage = (message) => {
     toast.success(message, {
+        size: "lg",
         position: toast.POSITION.TOP_RIGHT
+        
     });
 };
 
@@ -160,13 +199,13 @@ const LayoutOne = ({ children }) => {
     <div className="flex flex-col h-screen">
       <div className="flex h-1/2 space-x-4">
         {/* Pass initial values as props */}
-        <ClickButton text="Wood" initialValue={woodCount} updateCount={updateWoodCount} increment={woodIncrement} />
-        <ClickButton text="Metal" initialValue={metalCount} updateCount={updateMetalCount} increment={metalIncrement} />
+        <ClickButton text="Wood" initialValue={woodCount} updateCount={updateWoodCount} increment={woodIncrement} randomItem={generateRandomNumber} toast={showToastMessage} updateRareMaterials={updateLeafCount} rareMaterial={leaf} rareMaterialType="Leaf" />
+        <ClickButton text="Ore" initialValue={oreCount} updateCount={updateOreCount} increment={oreIncrement} randomItem={generateRandomNumber} toast={showToastMessage} updateRareMaterials={updateGemCount} rareMaterial={gem} rareMaterialType="Gem" />
       </div>
       <div className="flex h-1/2 space-x-4">
         {/* Pass the cost as a number (not a string) */}
         <UpgradeButton text="Axe" cost={axeCost} initialValue={woodCount} updateCount={updateWoodCount} increment={woodIncrement} updateIncrement={updateWoodIncrement} updateCost={updateAxeCost} toast={showToastMessage} />
-        <UpgradeButton text="Pickaxe" cost={pickaxeCost} initialValue={metalCount} updateCount={updateMetalCount} increment={metalIncrement} updateIncrement={updateMetalIncrement} updateCost={updatePickaxeCost} toast={showToastMessage}/>
+        <UpgradeButton text="Pickaxe" cost={pickaxeCost} initialValue={oreCount} updateCount={updateOreCount} increment={oreIncrement} updateIncrement={updateoreIncrement} updateCost={updatePickaxeCost} toast={showToastMessage}/>
       </div>
       <ToastContainer />
     </div>
