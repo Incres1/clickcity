@@ -63,8 +63,6 @@ const LayoutTwo = () => {
   //CARD FOR DISPLAYING OTHER CHARACTER DETAILS
   const LevelCard = ({ text, type }) => {
     
-
-
     return (
       <div className="bg-white p-4 rounded-lg shadow-md text-center">
         <div className="text-2xl font-semibold">{text}</div>
@@ -103,7 +101,7 @@ const LayoutTwo = () => {
       {/* CRAFTING */}
       <div className="grid gap-4">
         <div className="bg-white p-4 rounded-lg shadow-md text-center">
-          <div className="text-2xl font-semibold">Crafting (click to craft)</div>
+          <div className="text-2xl font-semibold">Crafting</div>
           <div className="text-gray-600">
               <CraftItemList itemList={itemList} oreCount={oreCount} woodCount={woodCount} updateOreCount={updateOreCount} updateWoodCount={updateWoodCount} />
           </div>

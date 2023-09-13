@@ -13,7 +13,7 @@ const CraftItemList = ({ itemList, oreCount, woodCount, updateOreCount, updateWo
 
         return (
           <div key={itemName} className="bg-white p-4 rounded-lg shadow-md text-center">
-            <div className="text-2xl font-semibold">{item.name} (click to craft)</div>
+            <div className="text-2xl font-semibold">{item.name}</div>
             <div className="text-gray-600">
               <CraftButton
                 item={item}
