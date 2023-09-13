@@ -11,7 +11,7 @@ import { useState } from "react";
 
 const LayoutTwo = () => {
   // MATERIALS
-  const {itemList, updateItem} = Items();
+  const {listOfItems, updateItem} = Items();
   const { woodCount, oreCount, leaf, gem, updateWoodCount, updateOreCount } = Materials();
   const {
     strength,
@@ -103,7 +103,7 @@ const LayoutTwo = () => {
         <div className="bg-white p-4 rounded-lg shadow-md text-center">
           <div className="text-2xl font-semibold">Crafting</div>
           <div className="text-gray-600">
-              <CraftItemList itemList={itemList} oreCount={oreCount} woodCount={woodCount} updateOreCount={updateOreCount} updateWoodCount={updateWoodCount} updateItem={updateItem} />
+              <CraftItemList itemList={listOfItems} oreCount={oreCount} woodCount={woodCount} updateOreCount={updateOreCount} updateWoodCount={updateWoodCount} updateItem={updateItem} />
           </div>
       </div>
 

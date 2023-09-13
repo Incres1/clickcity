@@ -17,58 +17,34 @@ const Items = () => {
       wood: 200,
       ore: 100,
     },
+    // Add more items here
   };
 
   // Retrieve items from localStorage or use the default values
   const [listOfItems, setListOfItems] = useState(() => {
-    const savedItems = JSON.parse(localStorage.getItem("listOfItems"));
-    return savedItems || itemList;
+    const savedList = JSON.parse(localStorage.getItem("listOfItems"));
+    return savedList || itemList;
   });
-
-  const [simpleSword, setSimpleSword] = useState(() => {
-    const savedSimpleSword = JSON.parse(localStorage.getItem("simpleSword"));
-    return savedSimpleSword || itemList.simpleSword;
-  });
-
-  const [simpleShield, setSimpleShield] = useState(() => {
-    const savedSimpleShield = JSON.parse(localStorage.getItem("simpleShield"));
-    return savedSimpleShield || itemList.simpleShield;
-  });
-
-  const updateSimpleSword = (item) => {
-    setSimpleSword(item);
-    localStorage.setItem("simpleSword", JSON.stringify(item));
-  };
-
-  const updateSimpleShield = (item) => {
-    setSimpleShield(item);
-    localStorage.setItem("simpleShield", JSON.stringify(item));
-  };
 
   const updateItemList = (list) => {
     setListOfItems(list);
     localStorage.setItem("listOfItems", JSON.stringify(list));
   };
 
-
-  // Function to update item count and save it to localStorage
-  const updateItem = (item) => {
-    console.log(item);
-    const updatedItemList = { ...listOfItems };
-    console.log(updatedItemList);
-    const updatedItem = { ...item };
-    updatedItem.count += 1;
-    updatedItemList[item.name] = updatedItem;
-    setListOfItems(updatedItemList);
-    localStorage.setItem("listOfItems", JSON.stringify(updatedItemList));
+  const updateItem = (itemName) => {
+    const updatedList = { ...listOfItems };
+    console.log(listOfItems);
+    /* updatedList[itemName].count += 1; */
+    updateItemList(updatedList);
   };
 
   useEffect(() => {
     localStorage.setItem("listOfItems", JSON.stringify(listOfItems));
-  }, [listOfItems]);
+    localStorage.setItem("simpleSword", JSON.stringify(listOfItems.simpleSword));
+    localStorage.setItem("simpleShield", JSON.stringify(listOfItems.simpleShield));
+  }, [listOfItems, listOfItems.simpleSword, listOfItems.simpleShield]);
 
   return {
-    itemList,
     listOfItems,
     updateItem,
   };

@@ -2,13 +2,13 @@ import React from "react";
 import Items from "./Items";
 import CraftButton from "./CraftButton";
 
-const CraftItemList = ({ itemList, oreCount, woodCount, updateOreCount, updateWoodCount, updateItem }) => {
-  // Declare a state variable for itemList using useState
-  const [itemListState] = React.useState(itemList);
+const CraftItemList = ({ itemList, updateItem, oreCount, woodCount, updateOreCount, updateWoodCount }) => {
+  // Declare a state variable for itemList using Items() function
+
   return (
     <div className="grid gap-4">
-      {Object.keys(itemListState).map((itemName) => {
-        const item = itemListState[itemName];
+      {Object.keys(itemList).map((itemName) => {
+        const item = itemList[itemName];
 
         return (
           <div key={itemName} className="bg-white p-4 rounded-lg shadow-md text-center">
@@ -19,6 +19,7 @@ const CraftItemList = ({ itemList, oreCount, woodCount, updateOreCount, updateWo
             <div className="text-gray-600">
               <CraftButton
                 item={item}
+                itemList={itemList}
                 oreCount={oreCount}
                 woodCount={woodCount}
                 updateOreCount={updateOreCount}

@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 
-const CraftButton = ({item, oreCount, woodCount, updateOreCount, updateWoodCount, updateItem}) => {
+const CraftButton = ({item, itemList, oreCount, woodCount, updateOreCount, updateWoodCount, updateItem}) => {
 
     const handleButtonClick = () => {
         if (oreCount >= item.ore && woodCount >= item.wood) {
