@@ -1,7 +1,7 @@
 import React from "react";
 import Materials from "./Materials";
 import Character from "./Character";
-import Items from "./Items";
+import Craft from "./Craft";
 import { GiWoodPile } from "react-icons/gi";
 import { GiMinerals } from "react-icons/gi";
 import { BiSolidLeaf } from "react-icons/bi";
@@ -103,7 +103,7 @@ const LayoutTwo = () => {
         <div className="bg-white p-4 rounded-lg shadow-md text-center">
           <div className="text-2xl font-semibold">Crafting (click to craft)</div>
           <div className="text-gray-600">
-              <Items />
+              <Craft />
           </div>
       </div>
 
