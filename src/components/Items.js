@@ -33,9 +33,20 @@ const Items = () => {
 
   const updateItem = (itemName) => {
     const updatedList = { ...listOfItems };
-    console.log(listOfItems);
+    switch (itemName.name) {
+      case "Simple Sword":
+        updatedList.simpleSword.count += 1;
+        updateItemList(updatedList);
+        break;
+      case "Simple Shield":
+        updatedList.simpleShield.count += 1;
+        updateItemList(updatedList);
+        break;
+      default:
+        break;
+    }
     /* updatedList[itemName].count += 1; */
-    updateItemList(updatedList);
+    
   };
 
   useEffect(() => {
