@@ -1,7 +1,8 @@
 import React from "react";
 import Materials from "./Materials";
 import Character from "./Character";
-import Craft from "./Craft";
+import Items from "./Items";
+import CraftButton from "./CraftButton";
 import { GiWoodPile } from "react-icons/gi";
 import { GiMinerals } from "react-icons/gi";
 import { BiSolidLeaf } from "react-icons/bi";
@@ -10,7 +11,8 @@ import { useState } from "react";
 
 const LayoutTwo = () => {
   // MATERIALS
-  const { woodCount, oreCount, leaf, gem } = Materials();
+  const {itemList} = Items();
+  const { woodCount, oreCount, leaf, gem, updateWoodCount, updateOreCount } = Materials();
   const {
     strength,
     dexterity,
@@ -103,7 +105,7 @@ const LayoutTwo = () => {
         <div className="bg-white p-4 rounded-lg shadow-md text-center">
           <div className="text-2xl font-semibold">Crafting (click to craft)</div>
           <div className="text-gray-600">
-              <Craft />
+              <CraftButton itemList={itemList} oreCount={oreCount} woodCount={woodCount} updateOreCount={updateOreCount} updateWoodCount={updateWoodCount} />
           </div>
       </div>
 
