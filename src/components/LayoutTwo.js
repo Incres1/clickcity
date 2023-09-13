@@ -11,7 +11,7 @@ import { useState } from "react";
 
 const LayoutTwo = () => {
   // MATERIALS
-  const {listOfItems, updateItem} = Items();
+  const {listOfItems, updateItem, healthFromItems, strengthFromItems} = Items();
   const { woodCount, oreCount, leaf, gem, updateWoodCount, updateOreCount } = Materials();
   const {
     strength,
@@ -41,9 +41,10 @@ const LayoutTwo = () => {
   };
 
   // CARD FOR DISPLAYING SKILLS
-  const StatCard = ({ text, type, skill}) => {
+  const StatCard = ({ text, type, skill, statsFromItems}) => {
     const [count, setCount] = useState(skill || 0);
-    const actualskill = skill
+    const actualskill = skill;
+    
     
     const handleLevelSkillAllocation = () => {
       skillAllocation(actualskill)
@@ -51,7 +52,7 @@ const LayoutTwo = () => {
 
     return (
       <div className="bg-white p-4 rounded-lg shadow-md text-center">
-        <div className="text-2xl font-semibold">{text}</div>
+        <div className="text-2xl font-semibold">{text} (+{statsFromItems})</div>
         <div className="text-gray-600">{type}</div>
         <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={handleLevelSkillAllocation}>
           +
@@ -87,9 +88,9 @@ const LayoutTwo = () => {
 
       {/* CHARACTER */}
       <div className="grid grid-cols-2 gap-4">
-        <StatCard text={strength} type="Strength" skill={"strength"}/>
+        <StatCard text={strength} type="Strength" skill={"strength"} statsFromItems={strengthFromItems}/>
         <StatCard text={dexterity} type="Dexterity" skill={"dexterity"}/>
-        <StatCard text={health} type="Health" skill={"health"}/>
+        <StatCard text={health} type="Health" skill={"health"} statsFromItems={healthFromItems}/>
         <StatCard text={intelligence} type="Intelligence" skill={"intelligence"}/>
         <StatCard text={luckiness} type="Luckiness" skill={"luckiness"}/>
         <LevelCard text={gold} type="Gold" />

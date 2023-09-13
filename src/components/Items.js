@@ -44,10 +44,27 @@ const Items = () => {
         break;
       default:
         break;
-    }
-    /* updatedList[itemName].count += 1; */
-    
+    }    
   };
+  const getStats = () => {
+    let strengthFromItems = 0;
+    let healthFromItems = 0;
+    for (const key in listOfItems) {
+      if (listOfItems[key].count > 0) {
+        if (listOfItems[key].strength) {
+        strengthFromItems += listOfItems[key].strength * listOfItems[key].count;
+        }
+        if (listOfItems[key].health) {
+          healthFromItems += listOfItems[key].health * listOfItems[key].count;
+        }
+        
+      }
+    }
+    return { healthFromItems, strengthFromItems };
+  };
+
+  const { healthFromItems, strengthFromItems } = getStats();
+  
 
   useEffect(() => {
     localStorage.setItem("listOfItems", JSON.stringify(listOfItems));
@@ -58,6 +75,8 @@ const Items = () => {
   return {
     listOfItems,
     updateItem,
+    healthFromItems,
+    strengthFromItems,
   };
 };
 
