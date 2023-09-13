@@ -21,6 +21,12 @@ const Items = () => {
     },
   };
 
+  const updateItemCount = (item, newCount) => {
+    itemList[item].count = newCount;
+    localStorage.setItem(item, newCount);
+    setListOfItems(itemList);
+    localStorage.setItem("listOfItems", JSON.stringify(itemList));
+  };
 
   // Retain state for simpleSword and simpleShield
   const [simpleSword, setSimpleSword] = useState(
@@ -38,6 +44,7 @@ const Items = () => {
 
   return {
     itemList,
+    updateItemCount
   }
 };
 
