@@ -10,7 +10,7 @@ const CraftButton = ({item, oreCount, woodCount, updateOreCount, updateWoodCount
             const newWoodCount = woodCount - item.wood;
             item.count += 1;
             console.log(item);
-            //updateItemCount(item, item.count);
+            updateItemCount(item, item.count);
             updateOreCount(newOreCount);
             updateWoodCount(newWoodCount);
             console.log("bought");
