@@ -1,8 +1,6 @@
-import React, { useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 
 const Items = () => {
-
-
   // Define items as an object with keys as item names
   const itemList = {
     simpleSword: {
@@ -21,51 +19,59 @@ const Items = () => {
     },
   };
 
-  
+  // Retrieve items from localStorage or use the default values
+  const [listOfItems, setListOfItems] = useState(() => {
+    const savedItems = JSON.parse(localStorage.getItem("listOfItems"));
+    return savedItems || itemList;
+  });
 
-  // Retain state for simpleSword and simpleShield
-  const [simpleSword, setSimpleSword] = useState(
-    JSON.parse(localStorage.getItem("simpleSword")) || itemList.simpleSword
-  );
-  const [simpleShield, setSimpleShield] = useState(
-    JSON.parse(localStorage.getItem("simpleShield")) || itemList.simpleShield
-  );
+  const [simpleSword, setSimpleSword] = useState(() => {
+    const savedSimpleSword = JSON.parse(localStorage.getItem("simpleSword"));
+    return savedSimpleSword || itemList.simpleSword;
+  });
 
-  const [listOfItems, setListOfItems] = useState(
-    JSON.parse(localStorage.getItem("listOfItems")) || itemList
-  );
+  const [simpleShield, setSimpleShield] = useState(() => {
+    const savedSimpleShield = JSON.parse(localStorage.getItem("simpleShield"));
+    return savedSimpleShield || itemList.simpleShield;
+  });
+
+  const updateSimpleSword = (item) => {
+    setSimpleSword(item);
+    localStorage.setItem("simpleSword", JSON.stringify(item));
+  };
+
+  const updateSimpleShield = (item) => {
+    setSimpleShield(item);
+    localStorage.setItem("simpleShield", JSON.stringify(item));
+  };
+
+  const updateItemList = (list) => {
+    setListOfItems(list);
+    localStorage.setItem("listOfItems", JSON.stringify(list));
+  };
 
 
+  // Function to update item count and save it to localStorage
   const updateItem = (item) => {
-    switch (item) {
-      case "simpleSword":
-        setSimpleSword(item);
-        setListOfItems(itemList);
-        
-        break;
-      case "simpleShield":
-        setSimpleShield(item);
-        setListOfItems(itemList);
-        break;
-      default:
-        break;
-    }
-    
+    console.log(item);
+    const updatedItemList = { ...listOfItems };
+    console.log(updatedItemList);
+    const updatedItem = { ...item };
+    updatedItem.count += 1;
+    updatedItemList[item.name] = updatedItem;
+    setListOfItems(updatedItemList);
+    localStorage.setItem("listOfItems", JSON.stringify(updatedItemList));
   };
 
   useEffect(() => {
-    localStorage.setItem("listOfItems", JSON.stringify(itemList));
-    localStorage.setItem("simpleSword", JSON.stringify(simpleSword));
-    localStorage.setItem("simpleShield", JSON.stringify(simpleShield));
-  }, [listOfItems, simpleSword, simpleShield]);
-
-
-  
+    localStorage.setItem("listOfItems", JSON.stringify(listOfItems));
+  }, [listOfItems]);
 
   return {
     itemList,
+    listOfItems,
     updateItem,
-  }
+  };
 };
 
 export default Items;

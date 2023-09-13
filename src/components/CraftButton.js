@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 
 const CraftButton = ({item, oreCount, woodCount, updateOreCount, updateWoodCount, updateItem}) => {
 
@@ -6,15 +6,15 @@ const CraftButton = ({item, oreCount, woodCount, updateOreCount, updateWoodCount
         if (oreCount >= item.ore && woodCount >= item.wood) {
             const newOreCount = oreCount - item.ore;
             const newWoodCount = woodCount - item.wood;
-            item.count += 1;
             updateItem(item);
             updateOreCount(newOreCount);
             updateWoodCount(newWoodCount);
-            console.log("bought");
         } else {
             console.log("error");
         }
     };
+
+
 
 
     return (

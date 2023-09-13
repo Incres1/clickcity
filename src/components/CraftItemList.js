@@ -5,7 +5,6 @@ import CraftButton from "./CraftButton";
 const CraftItemList = ({ itemList, oreCount, woodCount, updateOreCount, updateWoodCount, updateItem }) => {
   // Declare a state variable for itemList using useState
   const [itemListState] = React.useState(itemList);
-
   return (
     <div className="grid gap-4">
       {Object.keys(itemListState).map((itemName) => {
