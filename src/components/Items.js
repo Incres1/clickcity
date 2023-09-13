@@ -1,4 +1,4 @@
-import React, { useState} from "react";
+import React, { useEffect, useState} from "react";
 
 const Items = () => {
 
@@ -21,12 +21,7 @@ const Items = () => {
     },
   };
 
-  const updateItemCount = (item, newCount) => {
-    itemList[item].count = newCount;
-    localStorage.setItem(item, newCount);
-    setListOfItems(itemList);
-    localStorage.setItem("listOfItems", JSON.stringify(itemList));
-  };
+  
 
   // Retain state for simpleSword and simpleShield
   const [simpleSword, setSimpleSword] = useState(
@@ -40,11 +35,35 @@ const Items = () => {
     JSON.parse(localStorage.getItem("listOfItems")) || itemList
   );
 
+
+  const updateItem = (item) => {
+    switch (item) {
+      case "simpleSword":
+        setSimpleSword(item);
+        setListOfItems(itemList);
+        break;
+      case "simpleShield":
+        setSimpleShield(item);
+        setListOfItems(itemList);
+        break;
+      default:
+        break;
+    }
+    
+  };
+
+  useEffect(() => {
+    localStorage.setItem("listOfItems", JSON.stringify(itemList));
+    localStorage.setItem("simpleSword", JSON.stringify(simpleSword));
+    localStorage.setItem("simpleShield", JSON.stringify(simpleShield));
+  }, [listOfItems, simpleSword, simpleShield]);
+
+
   
 
   return {
     itemList,
-    updateItemCount
+    updateItem,
   }
 };
 

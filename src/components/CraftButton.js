@@ -2,15 +2,14 @@ import React from "react";
 import Items from "./Items";
 
 const CraftButton = ({item, oreCount, woodCount, updateOreCount, updateWoodCount}) => {
-    const {updateItemCount} = Items();
+    const {itemList, updateItem} = Items();
 
     const handleButtonClick = () => {
         if (oreCount >= item.ore && woodCount >= item.wood) {
             const newOreCount = oreCount - item.ore;
             const newWoodCount = woodCount - item.wood;
             item.count += 1;
-            console.log(item);
-            updateItemCount(item, item.count);
+            updateItem(item);
             updateOreCount(newOreCount);
             updateWoodCount(newWoodCount);
             console.log("bought");
