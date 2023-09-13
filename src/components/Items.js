@@ -41,6 +41,7 @@ const Items = () => {
       case "simpleSword":
         setSimpleSword(item);
         setListOfItems(itemList);
+        
         break;
       case "simpleShield":
         setSimpleShield(item);

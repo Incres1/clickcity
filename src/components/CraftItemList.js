@@ -2,7 +2,7 @@ import React from "react";
 import Items from "./Items";
 import CraftButton from "./CraftButton";
 
-const CraftItemList = ({ itemList, oreCount, woodCount, updateOreCount, updateWoodCount }) => {
+const CraftItemList = ({ itemList, oreCount, woodCount, updateOreCount, updateWoodCount, updateItem }) => {
   // Declare a state variable for itemList using useState
   const [itemListState] = React.useState(itemList);
 
@@ -24,6 +24,7 @@ const CraftItemList = ({ itemList, oreCount, woodCount, updateOreCount, updateWo
                 woodCount={woodCount}
                 updateOreCount={updateOreCount}
                 updateWoodCount={updateWoodCount}
+                updateItem={updateItem}
               />
             </div>
           </div>

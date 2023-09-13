@@ -1,8 +1,6 @@
 import React from "react";
-import Items from "./Items";
 
-const CraftButton = ({item, oreCount, woodCount, updateOreCount, updateWoodCount}) => {
-    const {itemList, updateItem} = Items();
+const CraftButton = ({item, oreCount, woodCount, updateOreCount, updateWoodCount, updateItem}) => {
 
     const handleButtonClick = () => {
         if (oreCount >= item.ore && woodCount >= item.wood) {
