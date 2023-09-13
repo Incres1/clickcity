@@ -4,10 +4,10 @@ import React, { useState, useEffect } from "react";
 const Materials = () => {
   // Define initial values for Wood and ore counts & increments
   const [woodCount, setWoodCount] = useState(
-    parseInt(localStorage.getItem("woodCount")) || 40
+    parseInt(localStorage.getItem("woodCount")) || 40000
   );
   const [oreCount, setOreCount] = useState(
-    parseInt(localStorage.getItem("oreCount")) || 40
+    parseInt(localStorage.getItem("oreCount")) || 40000
   );
 
   const [woodIncrement, setWoodIncrement] = useState(
@@ -19,10 +19,10 @@ const Materials = () => {
 
   // RARE MATERIALS
   const [leaf, setLeaf] = useState(
-    parseInt(localStorage.getItem("leaf")) || 0
+    parseInt(localStorage.getItem("leaf")) || 400
   );
   const [gem, setGem] = useState(
-    parseInt(localStorage.getItem("gem")) || 0
+    parseInt(localStorage.getItem("gem")) || 400
   );
 
   // RANDOM NUMBER GENERATOR
@@ -86,7 +86,9 @@ const Materials = () => {
     // Update the local storage when resourceCounts change
     localStorage.setItem("woodCount", woodCount);
     localStorage.setItem("oreCount", oreCount);
-  }, [woodCount, oreCount]);
+    localStorage.setItem("leaf", leaf);
+    localStorage.setItem("gem", gem);
+  }, [woodCount, oreCount, leaf, gem]);
 
   return {
     woodCount,

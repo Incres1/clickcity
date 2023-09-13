@@ -27,11 +27,13 @@ const LayoutTwo = () => {
 
   // CARD FOR DISPLAYING MATERIALS
   const Card = ({ text, type, icon }) => {
+    const [count, setCount] = useState(text || 0);
+    const updatedText = text;
     return (
       <div className="bg-white p-4 rounded-lg shadow-md text-center">
         {icon}
         <div className="mt-2 text-xl font-semibold">{type}</div>
-        <div className="text-gray-600">{text}</div>
+        <div className="text-gray-600">{updatedText}</div>
       </div>
     );
   };
@@ -99,7 +101,7 @@ const LayoutTwo = () => {
       {/* CRAFTING */}
       <div className="grid gap-4">
         <div className="bg-white p-4 rounded-lg shadow-md text-center">
-          <div className="text-2xl font-semibold">Crafting</div>
+          <div className="text-2xl font-semibold">Crafting (click to craft)</div>
           <div className="text-gray-600">
               <Items />
           </div>
