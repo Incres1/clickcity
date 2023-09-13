@@ -1,14 +1,13 @@
 import React from "react";
-import Materials from "./Materials";
-import Items from "./Items";
 
-const CraftButton = ({itemList, oreCount, woodCount, updateOreCount, updateWoodCount}) => {
+const CraftButton = ({item, oreCount, woodCount, updateOreCount, updateWoodCount}) => {
 
 
     const handleButtonClick = () => {
-        if (oreCount >= itemList.simpleSword.ore && woodCount >= itemList.simpleSword.wood) {
-            const newOreCount = oreCount - itemList.simpleSword.ore;
-            const newWoodCount = woodCount - itemList.simpleSword.wood;
+        if (oreCount >= item.ore && woodCount >= item.wood) {
+            const newOreCount = oreCount - item.ore;
+            const newWoodCount = woodCount - item.wood;
+            item.count += 1;
             updateOreCount(newOreCount);
             updateWoodCount(newWoodCount);
             console.log("bought");

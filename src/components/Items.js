@@ -30,6 +30,10 @@ const Items = () => {
     JSON.parse(localStorage.getItem("simpleShield")) || itemList.simpleShield
   );
 
+  const [listOfItems, setListOfItems] = useState(
+    JSON.parse(localStorage.getItem("listOfItems")) || itemList
+  );
+
   
 
   return {
