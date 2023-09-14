@@ -1,4 +1,4 @@
-
+import { useEffect, useState } from 'react';
 const Buildings = () => {
     //SETUP INTERVAL
     const [intervalId, setIntervalId] = useState(null);
@@ -70,16 +70,35 @@ const Buildings = () => {
     };
 
     //CHECK IF ELIGIBLE FOR INCREMENT
-    const checkIfEligibleForIncrement = (building) => {
-        switch (building.name) {
-            case 'Mine':
-                return building.count > 0;
-            case 'Lumbermill':
-                return building.count > 0;
-            default:
-                break;
+    const eligibleForIncrement = () => {
+        let eligible = false;
+        for (const key in listOfBuildings) {
+            if (listOfBuildings[key].count > 0) {
+                eligible = true;
+            }
         }
+        return eligible;
+
     };
+
+    useEffect(() => {
+        // Start the timer when the component mounts
+        if (eligibleForIncrement()) {
+            const id = setInterval(() => {
+            // This function will be called every second
+            console.log('One second has passed.');
+            
+            // Call your desired function here
+            // For example: myFunctionToCallEverySecond();
+            }, 1000);
+        
+            // Save the interval ID in the state
+            setIntervalId(id);
+        
+            // Clean up the interval when the component unmounts
+            return () => clearInterval(id);
+        }
+    }, []);
 
 
 
@@ -89,4 +108,6 @@ const Buildings = () => {
         getIncrement,
     };
 };
+
+export default Buildings;
     
