@@ -4,6 +4,8 @@ import Character from "./Character";
 import ProgressBar from "./ProgressBar";
 import ClickButton from "./ClickButton";
 import UpgradeButton from "./UpgradeButton";
+import Buildings from "./Buildings";
+import BuyBuildingList from "./BuyBuildingList";
 import {toast, ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -33,6 +35,16 @@ const LayoutOne= () => {
     experienceToNextLevel,
   } = Character();
     
+  const {
+    updateBuilding,
+    updateBuildingList,
+    updateBuildingsLevel,
+    buildingsLevel,
+    listOfBuildings,
+    getIncrement,
+    eligibleForIncrement,
+  } = Buildings();
+
     //TOAST CONTAINER
   
     const showToastMessage = (message, type) => {
@@ -78,7 +90,14 @@ const LayoutOne= () => {
               />
           </div>
           <div>
-            hej
+            <BuyBuildingList
+              buildings={listOfBuildings}
+              updateBuilding={updateBuilding}
+              oreCount={oreCount}
+              woodCount={woodCount}
+              updateOreCount={updateOreCount}
+              updateWoodCount={updateWoodCount}
+            />
           </div>
           
           

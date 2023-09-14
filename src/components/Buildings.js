@@ -1,7 +1,5 @@
 import { useEffect, useState } from 'react';
 const Buildings = () => {
-    //SETUP INTERVAL
-    const [intervalId, setIntervalId] = useState(null);
     //SETUP BUILDINGS LEVEL
     const [buildingsLevel, setBuildingsLevel] = useState((
         parseInt(localStorage.getItem('buildingsLevel')) || 1
@@ -81,24 +79,6 @@ const Buildings = () => {
 
     };
 
-    useEffect(() => {
-        // Start the timer when the component mounts
-        if (eligibleForIncrement()) {
-            const id = setInterval(() => {
-            // This function will be called every second
-            console.log('One second has passed.');
-            
-            // Call your desired function here
-            // For example: myFunctionToCallEverySecond();
-            }, 1000);
-        
-            // Save the interval ID in the state
-            setIntervalId(id);
-        
-            // Clean up the interval when the component unmounts
-            return () => clearInterval(id);
-        }
-    }, []);
 
 
 
@@ -106,6 +86,9 @@ const Buildings = () => {
         listOfBuildings,
         updateBuilding,
         getIncrement,
+        eligibleForIncrement,
+        buildingsLevel,
+        updateBuildingsLevel,
     };
 };
 
