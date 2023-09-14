@@ -72,12 +72,12 @@ const LayoutOne= () => {
     if (eligibleForIncrement()) {
       const id = setInterval(() => {
         // This function will be called every second
-        updateWoodCount(woodCount+ getIncrement(listOfBuildings.lumbermill));
-        updateOreCount(oreCount + getIncrement(listOfBuildings.mine));
+        updateWoodCount(woodCount+ getIncrement(listOfBuildings.lumbermill) * listOfBuildings.lumbermill.count);
+        updateOreCount(oreCount + getIncrement(listOfBuildings.mine) * listOfBuildings.mine.count);
         
         // Call your desired function here
         // For example: myFunctionToCallEverySecond();
-        }, 1000);
+        }, 1000/buildingsLevel);
 
       // Save the interval ID in the state
       setIntervalId(id);
