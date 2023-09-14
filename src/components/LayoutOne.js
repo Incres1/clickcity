@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import Materials from "./Materials";
 import Character from "./Character";
+import ProgressBar from "./ProgressBar";
 import {toast, ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -26,6 +27,8 @@ const LayoutOne= () => {
   } = Materials();
   const {
     gainExperience,
+    experience,
+    experienceToNextLevel,
   } = Character();
   
 
@@ -58,11 +61,9 @@ const LayoutOne= () => {
           onClick={handleButtonClick}
         >
           <div className="flex-col justify-center">
-            Upgrade {text}
-            <br />
-            Cost: {cost}
-            <br />
-            You have: {count}
+            <p className="text-3xl font-bold">Upgrade {text}</p>
+            <p className="text-xl">Cost: {cost}</p>
+            <p className="text-lg font-bold">You have: {count}</p>
           </div>
         </button>
   
@@ -107,9 +108,9 @@ const LayoutOne= () => {
           onClick={handleButtonClick}
         >
           <div className="flex-col justify-center">
-            Get {text}<br />
-            {count} <br />
-            Level: {increment} <br />
+            <p className="text-3xl font-bold">Get {text}</p>
+            <p className="text-xl">You have: {count} {text}</p>
+            <p className="text-lg font-bold">Level: {increment}</p>
           </div>
         </button>
       );
@@ -154,6 +155,11 @@ const LayoutOne= () => {
 
 
           </div>
+          <ProgressBar
+            experience={experience} // Pass character's experience
+            experienceToNextLevel={experienceToNextLevel} // Pass character's experienceToNextLevel
+            gainExperience={gainExperience} // Pass the gainExperience function
+              />
           
           
 
