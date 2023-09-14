@@ -97,6 +97,7 @@ const LayoutOne= () => {
               woodCount={woodCount}
               updateOreCount={updateOreCount}
               updateWoodCount={updateWoodCount}
+              toast={showToastMessage}
             />
           </div>
           

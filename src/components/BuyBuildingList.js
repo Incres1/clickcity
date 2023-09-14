@@ -1,5 +1,5 @@
 import BuyBuildingButton from "./BuyBuildingButton";
-const BuyBuildingList = ({ buildings, updateBuilding, oreCount, woodCount, updateOreCount, updateWoodCount}) => {
+const BuyBuildingList = ({ buildings, updateBuilding, oreCount, woodCount, updateOreCount, updateWoodCount, toast}) => {
   return (
     <div className="flex flex-wrap -mx-4">
         {Object.keys(buildings).map((buildingName) => {
@@ -18,6 +18,7 @@ const BuyBuildingList = ({ buildings, updateBuilding, oreCount, woodCount, updat
                                 woodCount={woodCount}
                                 updateOreCount={updateOreCount}
                                 updateWoodCount={updateWoodCount}
+                                toast={toast}
                             />
                         </div>
                     </div>

@@ -1,5 +1,5 @@
 
-const BuyBuildingButton = ({building, updateBuilding, oreCount, woodCount, updateWoodCount, updateOreCount }) => {
+const BuyBuildingButton = ({building, updateBuilding, oreCount, woodCount, updateWoodCount, updateOreCount, toast }) => {
 
 
 
@@ -7,10 +7,12 @@ const BuyBuildingButton = ({building, updateBuilding, oreCount, woodCount, updat
         if (woodCount >= building.wood && oreCount >= building.ore) {
             const newWoodCount = woodCount - building.wood;
             const newOreCount = oreCount - building.ore;
-            console.log(building);
             updateBuilding(building);
             updateWoodCount(newWoodCount);
             updateOreCount(newOreCount);
+            const message = "You have bough a " + building.name;
+            toast(message, "success");
+
         } else {
             console.log(building);
             console.log('error');
