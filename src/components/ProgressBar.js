@@ -3,6 +3,8 @@ import React, { useEffect } from "react";
 const ProgressBar = ({ experience, experienceToNextLevel, gainExperience }) => {
   // Calculate the progress percentage
   const progressPercentage = (experience / experienceToNextLevel) * 100;
+  const progressBarHeight = `${progressPercentage}%`; // Use this to set the height
+
   useEffect(() => {
     // Check if the character has leveled up
     if (experience >= experienceToNextLevel) {
@@ -13,10 +15,10 @@ const ProgressBar = ({ experience, experienceToNextLevel, gainExperience }) => {
   }, [experience, experienceToNextLevel, gainExperience]);
 
   return (
-    <div className="w-full h-12 bg-gray-300 rounded-lg text-center text-xs text-black relative">
+    <div className="h-full bg-gray-300 rounded-lg text-center text-xs text-black relative">
       <div
-        className="h-full bg-blue-500 rounded-lg absolute top-0 left-0"
-        style={{ width: `${progressPercentage}%` }}
+        className="w-full bg-blue-500 rounded-lg absolute bottom-0 left-0"
+        style={{ height: progressBarHeight }}
       ></div>
       <div className="absolute inset-0 flex items-center justify-center">
         <p className="text-lg font-bold">Experience: {experience} / {experienceToNextLevel} </p>
