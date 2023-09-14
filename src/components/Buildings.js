@@ -57,6 +57,7 @@ const Buildings = () => {
 
     //SWITCH STATE TO GET INCREMENT
     const getIncrement = (building) => {
+        if (building.count > 0) {
         switch (building.name) {
             case 'Mine':
                 return building.oreIncrement;
@@ -65,6 +66,9 @@ const Buildings = () => {
             default:
                 break;
         }
+    } else {
+        return 0;
+    }
     };
 
     //CHECK IF ELIGIBLE FOR INCREMENT

@@ -8,8 +8,10 @@ import Buildings from "./Buildings";
 import BuyBuildingList from "./BuyBuildingList";
 import {toast, ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useState, useEffect } from "react";
 
 const LayoutOne= () => {
+  const [intervalId, setIntervalId] = useState(null);
   const {
     woodCount,
     oreCount,
@@ -64,7 +66,31 @@ const LayoutOne= () => {
       }
       
   };
+  useEffect(() => {
+    
+    // Start the timer when the component mounts
+    if (eligibleForIncrement()) {
+      const id = setInterval(() => {
+        // This function will be called every second
+        updateWoodCount(woodCount+ getIncrement(listOfBuildings.lumbermill));
+        updateOreCount(oreCount + getIncrement(listOfBuildings.mine));
+        
+        // Call your desired function here
+        // For example: myFunctionToCallEverySecond();
+        }, 1000);
 
+      // Save the interval ID in the state
+      setIntervalId(id);
+
+      // Clean up the interval when the component unmounts
+      return () => clearInterval(id);
+  }
+    localStorage.setItem("woodCount", woodCount);
+    localStorage.setItem("oreCount", oreCount);
+    localStorage.setItem("leaf", leaf);
+    localStorage.setItem("gem", gem);
+
+  }, [woodCount, oreCount, leaf, gem]);
   
     //GAME
   
