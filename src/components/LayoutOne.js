@@ -54,7 +54,7 @@ const LayoutOne= () => {
       };
       return (
         <button
-          className="w-1/4 h-1/4 border-gray-500 border-2 rounded-xl p-4 text-center transition duration-500 hover:bg-gray-300"
+          className="border-gray-500 border-2 rounded-xl p-4 text-center transition duration-500 hover:bg-gray-300"
           onClick={handleButtonClick}
         >
           <div className="flex-col justify-center">
@@ -103,11 +103,11 @@ const LayoutOne= () => {
     
       return (
         <button
-          className="w-1/4 h-1/2 border-gray-500 border-2 rounded-xl p-4 text-center transition duration-500 hover:bg-gray-300"
+          className=" border-gray-500 border-2 rounded-xl p-4 text-center transition duration-500 hover:bg-gray-300"
           onClick={handleButtonClick}
         >
           <div className="flex-col justify-center">
-            {text}<br />
+            Get {text}<br />
             {count} <br />
             Level: {increment} <br />
           </div>
@@ -141,17 +141,22 @@ const LayoutOne= () => {
     //GAME
   
     return (
-      <div className="flex flex-col space-y-4">
-        <div className="flex space-x-4">
+      <div className="grid h-screen grid-rows-2 grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-4">
           {/* Pass initial values as props */}
           <ClickButton text="Wood" initialValue={woodCount} updateCount={updateWoodCount} increment={woodIncrement} randomItem={generateRandomNumber} toast={showToastMessage} updateRareMaterials={updateLeafCount} rareMaterial={leaf} rareMaterialType="Leaf" gainExperience={gainExperience} />
           <ClickButton text="Ore" initialValue={oreCount} updateCount={updateOreCount} increment={oreIncrement} randomItem={generateRandomNumber} toast={showToastMessage} updateRareMaterials={updateGemCount} rareMaterial={gem} rareMaterialType="Gem" gainExperience={gainExperience}/>
-        </div>
-        <div className="flex space-x-4">
+
+
           {/* Pass the cost as a number (not a string) */}
           <UpgradeButton text="Axe" cost={axeCost} initialValue={woodCount} updateCount={updateWoodCount} increment={woodIncrement} updateIncrement={updateWoodIncrement} updateCost={updateAxeCost} toast={showToastMessage} />
           <UpgradeButton text="Pickaxe" cost={pickaxeCost} initialValue={oreCount} updateCount={updateOreCount} increment={oreIncrement} updateIncrement={updateOreIncrement} updateCost={updatePickaxeCost} toast={showToastMessage}/>
-        </div>
+
+
+          </div>
+          
+          
+
         <ToastContainer />
       </div>
     );

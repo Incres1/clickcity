@@ -18,8 +18,8 @@ const CraftButton = ({item, oreCount, woodCount, updateOreCount, updateWoodCount
 
 
     return (
-        <button className="w-1/4 h-1/4 border-gray-500 border-2 rounded-xl p-4 text-center transition duration-500 hover:bg-gray-300" onClick={handleButtonClick}>
-            <div className="flex-col justify-center">
+        <button className="w-1/2 h-1/2 border-gray-500 border-2 rounded-xl p-4 text-center transition duration-500 hover:bg-gray-300" onClick={handleButtonClick}>
+            <div className="flex-col text-center">
                 Craft
             </div>
         </button>
