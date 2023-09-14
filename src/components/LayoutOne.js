@@ -66,6 +66,10 @@ const LayoutOne= () => {
       }
       
   };
+
+
+
+  //TIMER
   useEffect(() => {
     
     // Start the timer when the component mounts
@@ -74,10 +78,13 @@ const LayoutOne= () => {
         // This function will be called every second
         updateWoodCount(woodCount+ getIncrement(listOfBuildings.lumbermill) * listOfBuildings.lumbermill.count);
         updateOreCount(oreCount + getIncrement(listOfBuildings.mine) * listOfBuildings.mine.count);
-        
+        localStorage.setItem("woodCount", woodCount);
+        localStorage.setItem("oreCount", oreCount);
+        localStorage.setItem("leaf", leaf);
+        localStorage.setItem("gem", gem);
         // Call your desired function here
         // For example: myFunctionToCallEverySecond();
-        }, 1000/buildingsLevel);
+        }, 1000/buildingsLevel );
 
       // Save the interval ID in the state
       setIntervalId(id);
@@ -85,12 +92,11 @@ const LayoutOne= () => {
       // Clean up the interval when the component unmounts
       return () => clearInterval(id);
   }
-    localStorage.setItem("woodCount", woodCount);
-    localStorage.setItem("oreCount", oreCount);
-    localStorage.setItem("leaf", leaf);
-    localStorage.setItem("gem", gem);
+    
 
   }, [woodCount, oreCount, leaf, gem]);
+
+  
   
     //GAME
   
