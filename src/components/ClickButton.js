@@ -10,7 +10,7 @@ const ClickButton = ({ text, initialValue, updateCount, increment, randomItem, t
         if (initialValue !== count) {
             setCount(initialValue);
         }
-    }, [initialValue]);
+    }, [initialValue, count]);
 
     const handleButtonClick = () => {
       const randomNumber = randomItem(100);

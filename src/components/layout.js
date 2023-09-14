@@ -1,5 +1,5 @@
 // src/components/Layout.js
-import React, {useState, useEffect} from "react";
+import React, {useState} from "react";
 import 'react-toastify/dist/ReactToastify.css';
 
 

@@ -29,7 +29,7 @@ const LayoutTwo = () => {
 
   // CARD FOR DISPLAYING MATERIALS
   const Card = ({ text, type, icon }) => {
-    const [count, setCount] = useState(text || 0);
+    useState(text || 0);
     const updatedText = text;
     return (
       <div className="bg-white p-4 rounded-lg shadow-md text-center">
@@ -42,7 +42,7 @@ const LayoutTwo = () => {
 
   // CARD FOR DISPLAYING SKILLS
   const StatCard = ({ text, type, skill, statsFromItems}) => {
-    const [count, setCount] = useState(skill || 0);
+    useState(skill || 0);
     const actualskill = skill;
     
     

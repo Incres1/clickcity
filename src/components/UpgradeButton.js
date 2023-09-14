@@ -3,13 +3,13 @@ import { useState, useEffect } from "react";
 const UpgradeButton = ({ text, cost, initialValue, updateCount, updateIncrement, increment, updateCost, toast }) => {
     const [count, setCount] = useState(initialValue || 0);
 
-    
+
     useEffect(() => {
         // Check if initialValue is different from the current count in state
         if (initialValue !== count) {
             setCount(initialValue);
         }
-    }, [initialValue]);
+    }, [initialValue, count]);
     
   
     const handleButtonClick = () => {

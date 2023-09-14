@@ -1,5 +1,4 @@
 import React from "react";
-import Items from "./Items";
 import CraftButton from "./CraftButton";
 
 const CraftItemList = ({ itemList, updateItem, oreCount, woodCount, updateOreCount, updateWoodCount }) => {
