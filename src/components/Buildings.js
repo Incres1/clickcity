@@ -1,11 +1,12 @@
 
 const Buildings = () => {
+    //SETUP INTERVAL
     const [intervalId, setIntervalId] = useState(null);
-
+    //SETUP BUILDINGS LEVEL
     const [buildingsLevel, setBuildingsLevel] = useState((
         parseInt(localStorage.getItem('buildingsLevel')) || 1
     ));
-
+    //SETUP BUILDING LIST
     const buildingList = {
         mine: {
             name: 'Mine',
@@ -22,11 +23,14 @@ const Buildings = () => {
             woodIncrement: 1,
     }
     }
+
+    //INITIAL BUILDING LIST
     const [listOfBuildings, setListOfBuildings] = useState(() => {
         const savedList = JSON.parse(localStorage.getItem('listOfBuildings'));
         return savedList || buildingList;
     });
 
+    //UPDATES
     const updateBuildingsLevel = (newCount) => {
         setBuildingsLevel(newCount);
         localStorage.setItem('buildingsLevel', newCount);
@@ -53,6 +57,7 @@ const Buildings = () => {
         }
     };
 
+    //SWITCH STATE TO GET INCREMENT
     const getIncrement = (building) => {
         switch (building.name) {
             case 'Mine':
@@ -64,22 +69,24 @@ const Buildings = () => {
         }
     };
 
-    const getTimer = (building) => {
+    //CHECK IF ELIGIBLE FOR INCREMENT
+    const checkIfEligibleForIncrement = (building) => {
         switch (building.name) {
             case 'Mine':
-                return building.timer;
+                return building.count > 0;
             case 'Lumbermill':
-                return building.timer;
+                return building.count > 0;
             default:
                 break;
         }
     };
 
+
+
     return {
         listOfBuildings,
         updateBuilding,
         getIncrement,
-        getTimer,
     };
 };
     
