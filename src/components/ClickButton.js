@@ -26,9 +26,6 @@ const ClickButton = ({ text, initialValue, updateCount, increment, randomItem, t
         const message = `You have gained 1 experience!`;
         toast(message, "success");
       }
-
-
-        
       const newCount = count + increment;
       setCount(newCount);
       updateCount(newCount);

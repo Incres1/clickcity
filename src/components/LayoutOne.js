@@ -6,12 +6,15 @@ import ClickButton from "./ClickButton";
 import UpgradeButton from "./UpgradeButton";
 import Buildings from "./Buildings";
 import BuyBuildingList from "./BuyBuildingList";
+import ResourceGain from "./ResourceGain";
 import {toast, ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useState, useEffect } from "react";
 
+
 const LayoutOne= () => {
   const [intervalId, setIntervalId] = useState(null);
+  const {handleResourceGain} = ResourceGain();
   const {
     woodCount,
     oreCount,
@@ -76,12 +79,12 @@ const LayoutOne= () => {
     if (eligibleForIncrement()) {
       const id = setInterval(() => {
         // This function will be called every second
-        updateWoodCount(woodCount+ getIncrement(listOfBuildings.lumbermill) * listOfBuildings.lumbermill.count);
-        updateOreCount(oreCount + getIncrement(listOfBuildings.mine) * listOfBuildings.mine.count);
-        localStorage.setItem("woodCount", woodCount);
+        handleResourceGain(updateLeafCount, leaf, "Leaf", gainExperience, showToastMessage, listOfBuildings.lumbermill.count * listOfBuildings.lumbermill.woodIncrement, updateWoodCount, woodCount);
+        handleResourceGain(updateGemCount, gem, "Gem", gainExperience, showToastMessage, listOfBuildings.mine.count * listOfBuildings.mine.oreIncrement, updateOreCount, oreCount);
+        /* localStorage.setItem("woodCount", woodCount);
         localStorage.setItem("oreCount", oreCount);
         localStorage.setItem("leaf", leaf);
-        localStorage.setItem("gem", gem);
+        localStorage.setItem("gem", gem); */
         // Call your desired function here
         // For example: myFunctionToCallEverySecond();
         }, 1000/buildingsLevel );
