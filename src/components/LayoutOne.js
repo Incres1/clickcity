@@ -74,12 +74,14 @@ const LayoutOne= () => {
 
   //TIMER
   useEffect(() => {
-    
+    localStorage.setItem("experience", experience);
     // Start the timer when the component mounts
     if (eligibleForIncrement()) {
       const id = setInterval(() => {
         // This function will be called every second
+        localStorage.setItem("experience", experience);
         handleResourceGain(updateLeafCount, leaf, "Leaf", gainExperience, showToastMessage, listOfBuildings.lumbermill.count * listOfBuildings.lumbermill.woodIncrement, updateWoodCount, woodCount);
+        
         handleResourceGain(updateGemCount, gem, "Gem", gainExperience, showToastMessage, listOfBuildings.mine.count * listOfBuildings.mine.oreIncrement, updateOreCount, oreCount);
         /* localStorage.setItem("woodCount", woodCount);
         localStorage.setItem("oreCount", oreCount);
