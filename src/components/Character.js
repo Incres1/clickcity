@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 
 const Character = () => {
 
@@ -126,19 +126,21 @@ const Character = () => {
         }
     };
 
-    const gainExperience = (newCount) => {
-        const newExperience = experience + newCount;
-        updateExperience(newExperience);
-        if (newExperience >= experienceToNextLevel) {
-            const newLevel = level + 1;
-            updateExperience(0);
-            updateLevel(newLevel);
-            const newSkillPoints = skillPoints + 1;
-            updateSkillPoints(newSkillPoints);
-            const newExperienceToNextLevel = experienceToNextLevel * 2;
-            updateExperienceToNextLevel(newExperienceToNextLevel);
-        }
-    };
+    const gainExperience = useCallback((newCount) => {
+        setExperience((prevExperience) => {
+          const newExperience = prevExperience + newCount;
+          localStorage.setItem("experience", newExperience);
+          if (newExperience >= experienceToNextLevel) {
+            setLevel((prevLevel) => prevLevel + 1);
+            setExperience(0);
+            setSkillPoints((prevSkillPoints) => prevSkillPoints + 1);
+            setExperienceToNextLevel(
+              (prevExperienceToNextLevel) => prevExperienceToNextLevel * 2
+            );
+          }
+          return newExperience;
+        });
+      }, [experienceToNextLevel]);
 
     useEffect(() => {
         localStorage.setItem("strength", strength);
