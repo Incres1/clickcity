@@ -21,9 +21,7 @@ const Materials = () => {
   const [leaf, setLeaf] = useState(
     parseInt(localStorage.getItem("leaf")) || 400
   );
-  const [gem, setGem] = useState(
-    parseInt(localStorage.getItem("gem")) || 400
-  );
+  const [gem, setGem] = useState(parseInt(localStorage.getItem("gem")) || 400);
 
   // RANDOM NUMBER GENERATOR
   const generateRandomNumber = (threshold) => {
