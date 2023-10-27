@@ -39,10 +39,10 @@ const ListOfItems = ({
         <div style={{ flex: 2 }}>
           <div className="">
             <div className="p-4 flex">
-              <div className="text-left w-1/2">
+              <div className="text-left w-1/2 font-bold text-xl">
                 {itemList[selectedItem].name}
               </div>
-              <div className="text-right w-1/2">
+              <div className="text-right w-1/2 font-bold">
                 {itemList[selectedItem].strength > 0 && (
                   <p>Strength: {itemList[selectedItem].strength}</p>
                 )}
@@ -54,20 +54,27 @@ const ListOfItems = ({
                 )}
               </div>
             </div>
+            <div className="flex pl-4">
+              <div className="flex-col text-left w-1/2">
+                Costs:
+                {itemList[selectedItem].wood > 0 && (
+                  <p>Wood: {itemList[selectedItem].wood}</p>
+                )}
+                {itemList[selectedItem].ore > 0 && (
+                  <p>Ore: {itemList[selectedItem].ore}</p>
+                )}
+                {itemList[selectedItem].leaf > 0 && (
+                  <p>Leaf: {itemList[selectedItem].leaf}</p>
+                )}
+                {itemList[selectedItem].gem > 0 && (
+                  <p>Gem: {itemList[selectedItem].gem}</p>
+                )}
+              </div>
+              <div className="flex items-center justify-end w-1/2 pr-4">
+                <p>Value: {itemList[selectedItem].value || 0} gold</p>
+              </div>
+            </div>
 
-            {itemList[selectedItem].wood > 0 && (
-              <p>Wood: {itemList[selectedItem].wood}</p>
-            )}
-            {itemList[selectedItem].ore > 0 && (
-              <p>Ore: {itemList[selectedItem].ore}</p>
-            )}
-            {itemList[selectedItem].leaf > 0 && (
-              <p>Leaf: {itemList[selectedItem].leaf}</p>
-            )}
-            {itemList[selectedItem].gem > 0 && (
-              <p>Gem: {itemList[selectedItem].gem}</p>
-            )}
-            <p>Value: {itemList[selectedItem].value || 0}</p>
             <p>You own: {itemList[selectedItem].count}</p>
           </div>
           <CraftButton
