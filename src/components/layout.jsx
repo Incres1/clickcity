@@ -13,7 +13,7 @@ const Layout = ({ children }) => {
     setSelectedContent(content);
   };
   return (
-    <div className="flex">
+    <div className="flex max-content">
       {/* Left Side Column */}
       <div className="w-1/4 h-screen bg-gray-200 p-4 space-y-4">
         {/* Add your left-side content here */}
@@ -30,7 +30,7 @@ const Layout = ({ children }) => {
         </div>
       </div>
       {/* Right Side Content */}
-      <div className="w-3/4 p-4 h-screen">
+      <div className="w-3/4 p-4">
         <div>{selectedContent}</div>
         {/* Display the selected content */}
       </div>

@@ -90,16 +90,19 @@ const LayoutTwo = () => {
   //CARD FOR DISPLAYING OTHER CHARACTER DETAILS
   const LevelCard = ({ text, type }) => {
     return (
-      <div className="bg-white p-4 rounded-lg shadow-md text-center">
-        <div className="text-2xl font-semibold">{text}</div>
-        <div className="text-gray-600">{type}</div>
+      <div className="max-content">
+        <div className="bg-white p-4 rounded-lg shadow-md text-center">
+          <div className="text-2xl font-semibold">{text}</div>
+          <div className="text-gray-600">{type}</div>
+        </div>
       </div>
     );
   };
 
   return (
     /* MATERIALS */
-    <div className="grid grid-cols-2 gap-4">
+
+    <div className="grid h-screen grid-cols-2 gap-4">
       <div className="grid grid-cols-2 gap-4">
         <Card text={woodCount} type="Wood" icon={<GiWoodPile size={80} />} />
         <Card text={oreCount} type="Ore" icon={<GiMinerals size={80} />} />
@@ -108,7 +111,7 @@ const LayoutTwo = () => {
       </div>
 
       {/* CHARACTER */}
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-4 gap-4">
         <StatCard
           text={strength}
           type="Strength"
