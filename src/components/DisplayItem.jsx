@@ -12,6 +12,7 @@ const DisplayItem = ({ item, updateItem, gold, updateGold }) => {
     if (item.count > 0) {
       gold += item.value * item.count;
       updateItem(item, -item.count);
+
       updateGold(gold);
     }
   };
