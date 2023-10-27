@@ -9,6 +9,7 @@ const Items = () => {
       count: 0,
       wood: 200,
       ore: 100,
+      value: 5,
     },
     simpleShield: {
       name: "Simple Shield",
@@ -16,6 +17,7 @@ const Items = () => {
       count: 0,
       wood: 200,
       ore: 100,
+      value: 5,
     },
     luckyCharm: {
       name: "Lucky Charm",
@@ -23,6 +25,7 @@ const Items = () => {
       luck: 2,
       gem: 50,
       leaf: 50,
+      value: 5,
     },
     // Add more items here
   };

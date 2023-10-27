@@ -46,6 +46,7 @@ const ListOfItems = ({
             {itemList[selectedItem].leaf || 0} Leaf &{" "}
             {itemList[selectedItem].gem || 0} Gem
           </p>
+          <p>Value: {itemList[selectedItem].value || 0}</p>
           <p>You own: {itemList[selectedItem].count}</p>
           {/* Add more attributes here */}
           <CraftButton

@@ -5,6 +5,7 @@ const DisplayItem = ({ item }) => {
     <div className="border p-4 my-2">
       <h3>{item.name}</h3>
       <p>Count: {item.count}</p>
+      <p>Sell</p>
     </div>
   );
 };
