@@ -37,18 +37,39 @@ const ListOfItems = ({
           ))}
         </div>
         <div style={{ flex: 2 }}>
-          <p>Strength: {itemList[selectedItem].strength || 0}</p>
-          <p>Health: {itemList[selectedItem].health || 0}</p>
-          <p>Luck: {itemList[selectedItem].luck || 0}</p>
-          <p>
-            Cost: {itemList[selectedItem].wood || 0} Wood &{" "}
-            {itemList[selectedItem].ore || 0} Ore &{" "}
-            {itemList[selectedItem].leaf || 0} Leaf &{" "}
-            {itemList[selectedItem].gem || 0} Gem
-          </p>
-          <p>Value: {itemList[selectedItem].value || 0}</p>
-          <p>You own: {itemList[selectedItem].count}</p>
-          {/* Add more attributes here */}
+          <div className="">
+            <div className="p-4 flex">
+              <div className="text-left w-1/2">
+                {itemList[selectedItem].name}
+              </div>
+              <div className="text-right w-1/2">
+                {itemList[selectedItem].strength > 0 && (
+                  <p>Strength: {itemList[selectedItem].strength}</p>
+                )}
+                {itemList[selectedItem].health > 0 && (
+                  <p>Health: {itemList[selectedItem].health}</p>
+                )}
+                {itemList[selectedItem].luck > 0 && (
+                  <p>Luck: {itemList[selectedItem].luck}</p>
+                )}
+              </div>
+            </div>
+
+            {itemList[selectedItem].wood > 0 && (
+              <p>Wood: {itemList[selectedItem].wood}</p>
+            )}
+            {itemList[selectedItem].ore > 0 && (
+              <p>Ore: {itemList[selectedItem].ore}</p>
+            )}
+            {itemList[selectedItem].leaf > 0 && (
+              <p>Leaf: {itemList[selectedItem].leaf}</p>
+            )}
+            {itemList[selectedItem].gem > 0 && (
+              <p>Gem: {itemList[selectedItem].gem}</p>
+            )}
+            <p>Value: {itemList[selectedItem].value || 0}</p>
+            <p>You own: {itemList[selectedItem].count}</p>
+          </div>
           <CraftButton
             item={itemList[selectedItem]}
             itemList={itemList}
