@@ -13,7 +13,52 @@ const CraftButton = ({
   updateItem,
 }) => {
   const handleButtonClick = () => {
-    if (oreCount >= item.ore && woodCount >= item.wood) {
+    let canCraft = true;
+
+    if (item.hasOwnProperty("wood") && woodCount < item.wood) {
+      console.log("Not enough wood");
+      canCraft = false;
+    }
+
+    if (item.hasOwnProperty("ore") && oreCount < item.ore) {
+      console.log("Not enough ore");
+      canCraft = false;
+    }
+
+    if (item.hasOwnProperty("leaf") && leafCount < item.leaf) {
+      console.log("Not enough leaf");
+      canCraft = false;
+    }
+
+    if (item.hasOwnProperty("gem") && gemCount < item.gem) {
+      console.log("Not enough gem");
+      canCraft = false;
+    }
+
+    if (canCraft) {
+      if (item.hasOwnProperty("wood")) {
+        const newWoodCount = woodCount - item.wood;
+        updateWoodCount(newWoodCount);
+      }
+
+      if (item.hasOwnProperty("ore")) {
+        const newOreCount = oreCount - item.ore;
+        updateOreCount(newOreCount);
+      }
+
+      if (item.hasOwnProperty("leaf")) {
+        const newLeafCount = leafCount - item.leaf;
+        updateLeafCount(newLeafCount);
+      }
+
+      if (item.hasOwnProperty("gem")) {
+        const newGemCount = gemCount - item.gem;
+        updateGemCount(newGemCount);
+      }
+
+      updateItem(item);
+    }
+    /* if (oreCount >= item.ore && woodCount >= item.wood) {
       const newOreCount = oreCount - item.ore;
       const newWoodCount = woodCount - item.wood;
       updateItem(item);
@@ -21,7 +66,7 @@ const CraftButton = ({
       updateWoodCount(newWoodCount);
     } else {
       console.log("error");
-    }
+    } */
   };
 
   return (

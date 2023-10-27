@@ -121,7 +121,12 @@ const LayoutTwo = () => {
           type="Intelligence"
           skill={"intelligence"}
         />
-        <StatCard text={luckiness} type="Luckiness" skill={"luckiness"} />
+        <StatCard
+          text={luckiness}
+          type="Luckiness"
+          skill={"luckiness"}
+          statsFromItems={luckFromitems}
+        />
         <LevelCard text={gold} type="Gold" />
         <LevelCard text={level} type="Level" />
         <LevelCard text={experience} type="Experience" />
