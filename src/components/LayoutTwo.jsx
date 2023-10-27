@@ -40,6 +40,7 @@ const LayoutTwo = () => {
     experience,
     experienceToNextLevel,
     skillPoints,
+    updateGold,
     skillAllocation,
   } = Character();
 
@@ -161,7 +162,12 @@ const LayoutTwo = () => {
       <div className="grid gap-4">
         <div className="bg-white p-4 rounded-lg shadow-md text-center">
           <div className="text-2xl font-semibold">Your Inventory:</div>
-          <Inventory listOfItems={listOfItems} updateItem={updateItem} />
+          <Inventory
+            listOfItems={listOfItems}
+            updateItem={updateItem}
+            gold={gold}
+            updateGold={updateGold}
+          />
         </div>
       </div>
     </div>

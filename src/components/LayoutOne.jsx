@@ -91,10 +91,10 @@ const LayoutOne = () => {
           updateOreCount,
           oreCount
         );
-        /* localStorage.setItem("woodCount", woodCount);
+        localStorage.setItem("woodCount", woodCount);
         localStorage.setItem("oreCount", oreCount);
         localStorage.setItem("leaf", leaf);
-        localStorage.setItem("gem", gem); */
+        localStorage.setItem("gem", gem);
         // Call your desired function here
         // For example: myFunctionToCallEverySecond();
       }, 1000 / buildingsLevel);

@@ -1,13 +1,22 @@
 import React from "react";
-import DisplayItem from "./DisplayItem"; // Import your DisplayItem component
+import DisplayItem from "./DisplayItem";
 
-const Inventory = ({ listOfItems, updateItem }) => {
+const Inventory = ({ listOfItems, updateItem, gold, updateGold }) => {
   return (
     <div className="container mx-auto p-4">
-      <h1>Inventory</h1>
-      {Object.values(listOfItems).map((item) => (
-        <DisplayItem key={item.name} item={item} updateItem={updateItem} />
-      ))}
+      {Object.values(listOfItems).map((item) => {
+        if (item.count > 0) {
+          return (
+            <DisplayItem
+              item={item}
+              updateItem={updateItem}
+              gold={gold}
+              updateGold={updateGold}
+            />
+          );
+        }
+        return null; // Optional: You can return null for items with count <= 0
+      })}
     </div>
   );
 };

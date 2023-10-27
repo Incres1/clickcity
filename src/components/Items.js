@@ -25,7 +25,7 @@ const Items = () => {
       luck: 2,
       gem: 50,
       leaf: 50,
-      value: 5,
+      value: 100,
     },
     // Add more items here
   };
@@ -41,19 +41,19 @@ const Items = () => {
     localStorage.setItem("listOfItems", JSON.stringify(list));
   };
 
-  const updateItem = (itemName) => {
+  const updateItem = (itemName, count) => {
     const updatedList = { ...listOfItems };
     switch (itemName.name) {
       case "Simple Sword":
-        updatedList.simpleSword.count += 1;
+        updatedList.simpleSword.count += count;
         updateItemList(updatedList);
         break;
       case "Simple Shield":
-        updatedList.simpleShield.count += 1;
+        updatedList.simpleShield.count += count;
         updateItemList(updatedList);
         break;
       case "Lucky Charm":
-        updatedList.luckyCharm.count += 1;
+        updatedList.luckyCharm.count += count;
         updateItemList(updatedList);
         break;
       default:

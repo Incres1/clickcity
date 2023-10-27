@@ -56,7 +56,7 @@ const CraftButton = ({
         updateGemCount(newGemCount);
       }
 
-      updateItem(item);
+      updateItem(item, 1);
     }
     /* if (oreCount >= item.ore && woodCount >= item.wood) {
       const newOreCount = oreCount - item.ore;
@@ -71,7 +71,7 @@ const CraftButton = ({
 
   return (
     <button
-      className="w-1/2 h-1/2 border-gray-500 border-2 rounded-xl p-4 text-center transition duration-500 hover:bg-gray-300"
+      className="border-gray-500 border-2 rounded-xl p-4 text-center transition duration-500 hover:bg-gray-300"
       onClick={handleButtonClick}
     >
       <div className="flex-col text-center">Craft</div>
