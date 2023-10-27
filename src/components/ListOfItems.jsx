@@ -6,8 +6,12 @@ const ListOfItems = ({
   updateItem,
   oreCount,
   woodCount,
+  leafCount,
+  gemCount,
   updateOreCount,
   updateWoodCount,
+  updateLeafCount,
+  updateGemCount,
 }) => {
   const [selectedItem, setSelectedItem] = useState(Object.keys(itemList)[0]);
 
@@ -35,9 +39,12 @@ const ListOfItems = ({
         <div style={{ flex: 2 }}>
           <p>Strength: {itemList[selectedItem].strength || 0}</p>
           <p>Health: {itemList[selectedItem].health || 0}</p>
+          <p>Luck: {itemList[selectedItem].luck || 0}</p>
           <p>
             Cost: {itemList[selectedItem].wood || 0} Wood &{" "}
-            {itemList[selectedItem].ore || 0} Ore
+            {itemList[selectedItem].ore || 0} Ore &{" "}
+            {itemList[selectedItem].leaf || 0} Leaf &{" "}
+            {itemList[selectedItem].gem || 0} Gem
           </p>
           <p>You own: {itemList[selectedItem].count}</p>
           {/* Add more attributes here */}
@@ -46,6 +53,10 @@ const ListOfItems = ({
             itemList={itemList}
             oreCount={oreCount}
             woodCount={woodCount}
+            gemCount={gemCount}
+            leafCount={leafCount}
+            updateGemCount={updateGemCount}
+            updateLeafCount={updateLeafCount}
             updateOreCount={updateOreCount}
             updateWoodCount={updateWoodCount}
             updateItem={updateItem}

@@ -8,13 +8,27 @@ import { BiSolidLeaf } from "react-icons/bi";
 import { FaGem } from "react-icons/fa";
 import { useState } from "react";
 import ListOfItems from "./ListOfItems";
+import Inventory from "./Inventory";
 
 const LayoutTwo = () => {
   // MATERIALS
-  const { listOfItems, updateItem, healthFromItems, strengthFromItems } =
-    Items();
-  const { woodCount, oreCount, leaf, gem, updateWoodCount, updateOreCount } =
-    Materials();
+  const {
+    listOfItems,
+    updateItem,
+    healthFromItems,
+    strengthFromItems,
+    luckFromitems,
+  } = Items();
+  const {
+    woodCount,
+    oreCount,
+    leaf,
+    gem,
+    updateWoodCount,
+    updateOreCount,
+    updateGemCount,
+    updateLeafCount,
+  } = Materials();
   const {
     strength,
     dexterity,
@@ -127,17 +141,13 @@ const LayoutTwo = () => {
               updateItem={updateItem}
               oreCount={oreCount}
               woodCount={woodCount}
+              leafCount={leaf}
+              gemCount={gem}
+              updateGemCount={updateGemCount}
+              updateLeafCount={updateLeafCount}
               updateOreCount={updateOreCount}
               updateWoodCount={updateWoodCount}
             />
-            {/* <CraftItemList
-              itemList={listOfItems}
-              oreCount={oreCount}
-              woodCount={woodCount}
-              updateOreCount={updateOreCount}
-              updateWoodCount={updateWoodCount}
-              updateItem={updateItem}
-            /> */}
           </div>
         </div>
       </div>
@@ -145,8 +155,8 @@ const LayoutTwo = () => {
       {/* EQUIPPING */}
       <div className="grid gap-4">
         <div className="bg-white p-4 rounded-lg shadow-md text-center">
-          <div className="text-2xl font-semibold">Equipping</div>
-          <div className="text-gray-600"></div>
+          <div className="text-2xl font-semibold">Your Inventory:</div>
+          <Inventory listOfItems={listOfItems} updateItem={updateItem} />
         </div>
       </div>
     </div>

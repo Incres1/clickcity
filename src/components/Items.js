@@ -17,6 +17,13 @@ const Items = () => {
       wood: 200,
       ore: 100,
     },
+    luckyCharm: {
+      name: "Lucky Charm",
+      count: 0,
+      luck: 2,
+      gem: 50,
+      leaf: 50,
+    },
     // Add more items here
   };
 
@@ -42,6 +49,10 @@ const Items = () => {
         updatedList.simpleShield.count += 1;
         updateItemList(updatedList);
         break;
+      case "Lucky Charm":
+        updatedList.luckyCharm.count += 1;
+        updateItemList(updatedList);
+        break;
       default:
         break;
     }    
@@ -49,6 +60,7 @@ const Items = () => {
   const getStats = () => {
     let strengthFromItems = 0;
     let healthFromItems = 0;
+    let luckFromitems = 0;
     for (const key in listOfItems) {
       if (listOfItems[key].count > 0) {
         if (listOfItems[key].strength) {
@@ -57,13 +69,16 @@ const Items = () => {
         if (listOfItems[key].health) {
           healthFromItems += listOfItems[key].health * listOfItems[key].count;
         }
+        if (listOfItems[key].luck) {
+          luckFromitems += listOfItems[key].luck * listOfItems[key].count;
+        }
         
       }
     }
-    return { healthFromItems, strengthFromItems };
+    return { healthFromItems, strengthFromItems, luckFromitems };
   };
 
-  const { healthFromItems, strengthFromItems } = getStats();
+  const { healthFromItems, strengthFromItems, luckFromitems } = getStats();
   
 
   useEffect(() => {
@@ -77,6 +92,7 @@ const Items = () => {
     updateItem,
     healthFromItems,
     strengthFromItems,
+    luckFromitems,
   };
 };
 
