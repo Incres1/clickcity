@@ -3,19 +3,37 @@ import { useState, useEffect, useCallback } from "react";
 const useLocalStorage = (key, initialValue) => {
   const [value, setValue] = useState(() => {
     const storedValue = localStorage.getItem(key);
-    return storedValue !== null ? JSON.parse(storedValue) : initialValue;
+    if (storedValue !== null) {
+      try {
+        // Attempt to parse the stored value
+        const parsedValue = JSON.parse(storedValue);
+
+        // If the parsed value is an array, use the first element as the value
+        return Array.isArray(parsedValue) ? parsedValue[0] : parsedValue;
+      } catch (error) {
+        console.error(`Error parsing stored value for key ${key}: ${error}`);
+      }
+    }
+    return initialValue;
   });
 
   const setStoredValue = (newValue) => {
-    setValue(newValue);
-    localStorage.setItem(key, JSON.stringify(newValue));
+    // Check if the value is already an array
+    if (Array.isArray(value)) {
+      value[0] = newValue;
+      setValue([...value]); // Trigger re-render
+    } else {
+      setValue(newValue);
+    }
+
+    // Ensure the stored value is always stored as an array
+    localStorage.setItem(key, JSON.stringify(Array.isArray(value) ? value : [value]));
   };
 
   return [value, setStoredValue];
 };
 
 const useCharacterStats = () => {
-  const statKeys = ["strength", "dexterity", "health", "intelligence", "luckiness"];
   const initialState = {
     strength: 1,
     dexterity: 1,
@@ -24,28 +42,30 @@ const useCharacterStats = () => {
     luckiness: 1,
   };
 
-  const stats = Object.fromEntries(
-    statKeys.map((key) => [key, useLocalStorage(key, initialState[key])])
-  );
+  const stats = {
+    strength: useLocalStorage("strength", initialState.strength),
+    dexterity: useLocalStorage("dexterity", initialState.dexterity),
+    health: useLocalStorage("health", initialState.health),
+    intelligence: useLocalStorage("intelligence", initialState.intelligence),
+    luckiness: useLocalStorage("luckiness", initialState.luckiness),
+  };
 
   return stats;
 };
 
 const useCharacterResources = () => {
-  const resourceKeys = ["gold"];
   const initialState = {
     gold: 0,
   };
 
-  const resources = Object.fromEntries(
-    resourceKeys.map((key) => [key, useLocalStorage(key, initialState[key])])
-  );
+  const resources = {
+    gold: useLocalStorage("gold", initialState.gold),
+  };
 
   return resources;
 };
 
 const useCharacterLevelInfo = () => {
-  const levelKeys = ["level", "experience", "experienceToNextLevel", "skillPoints"];
   const initialState = {
     level: 1,
     experience: 0,
@@ -53,9 +73,12 @@ const useCharacterLevelInfo = () => {
     skillPoints: 0,
   };
 
-  const levelInfo = Object.fromEntries(
-    levelKeys.map((key) => [key, useLocalStorage(key, initialState[key])])
-  );
+  const levelInfo = {
+    level: useLocalStorage("level", initialState.level),
+    experience: useLocalStorage("experience", initialState.experience),
+    experienceToNextLevel: useLocalStorage("experienceToNextLevel", initialState.experienceToNextLevel),
+    skillPoints: useLocalStorage("skillPoints", initialState.skillPoints),
+  };
 
   return levelInfo;
 };
@@ -101,19 +124,25 @@ const useCharacter = () => {
         levelInfo.level[1](levelInfo.level[0] + 1);
         levelInfo.experience[1](0);
         levelInfo.skillPoints[1](levelInfo.skillPoints[0] + 1);
-        levelInfo.experienceToNextLevel[1](levelInfo.experienceToNextLevel[0] * 2);
+        levelInfo.experienceToNextLevel[1](
+          levelInfo.experienceToNextLevel[0] * 2
+        );
       } else {
         levelInfo.experience[1](newExperience);
       }
     });
-  });
+  }, []);
 
   useEffect(() => {
     // Centralized local storage handling
-    for (const [key, value] of Object.entries({ ...stats, ...resources, ...levelInfo })) {
+    for (const [key, value] of Object.entries({
+      ...stats,
+      ...resources,
+      ...levelInfo,
+    })) {
       localStorage.setItem(key, JSON.stringify(value));
     }
-  }, [stats, resources, levelInfo]);
+  }, []);
 
   return {
     ...stats,

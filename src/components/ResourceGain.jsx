@@ -1,6 +1,6 @@
 import Materials from "./Materials";
+import generateRandomNumber from "./GenerateRandom";
 const ResourceGain = () => {
-  const { generateRandomNumber } = Materials();
   /* const [count, setCount] = useState(initialValue || 0);
     useEffect(() => {
         // Check if initialValue is different from the current count in state

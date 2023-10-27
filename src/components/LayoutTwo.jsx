@@ -1,6 +1,7 @@
 import React from "react";
 import Materials from "./Materials";
 import Character from "./Character";
+import useCharacter from "./useCharacter";
 import Items from "./Items";
 import { GiWoodPile } from "react-icons/gi";
 import { GiMinerals } from "react-icons/gi";
@@ -15,19 +16,7 @@ const LayoutTwo = () => {
     Items();
   const { woodCount, oreCount, leaf, gem, updateWoodCount, updateOreCount } =
     Materials();
-  const {
-    strength,
-    dexterity,
-    health,
-    intelligence,
-    luckiness,
-    gold,
-    level,
-    experience,
-    experienceToNextLevel,
-    skillPoints,
-    skillAllocation,
-  } = Character();
+  const character = useCharacter();
 
   // CARD FOR DISPLAYING MATERIALS
   const Card = ({ text, type, icon }) => {
@@ -38,41 +27,6 @@ const LayoutTwo = () => {
         {icon}
         <div className="mt-2 text-xl font-semibold">{type}</div>
         <div className="text-gray-600">{updatedText}</div>
-      </div>
-    );
-  };
-
-  // CARD FOR DISPLAYING SKILLS
-  const StatCard = ({ text, type, skill, statsFromItems }) => {
-    useState(skill || 0);
-    const actualskill = skill;
-
-    const handleLevelSkillAllocation = () => {
-      skillAllocation(actualskill);
-    };
-
-    return (
-      <div className="bg-white p-4 rounded-lg shadow-md text-center">
-        <div className="text-2xl font-semibold">
-          {text} (+{statsFromItems})
-        </div>
-        <div className="text-gray-600">{type}</div>
-        <button
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-          onClick={handleLevelSkillAllocation}
-        >
-          +
-        </button>
-      </div>
-    );
-  };
-
-  //CARD FOR DISPLAYING OTHER CHARACTER DETAILS
-  const LevelCard = ({ text, type }) => {
-    return (
-      <div className="bg-white p-4 rounded-lg shadow-md text-center">
-        <div className="text-2xl font-semibold">{text}</div>
-        <div className="text-gray-600">{type}</div>
       </div>
     );
   };
@@ -88,35 +42,7 @@ const LayoutTwo = () => {
       </div>
 
       {/* CHARACTER */}
-      <div className="grid grid-cols-2 gap-4">
-        <StatCard
-          text={strength}
-          type="Strength"
-          skill={"strength"}
-          statsFromItems={strengthFromItems}
-        />
-        <StatCard text={dexterity} type="Dexterity" skill={"dexterity"} />
-        <StatCard
-          text={health}
-          type="Health"
-          skill={"health"}
-          statsFromItems={healthFromItems}
-        />
-        <StatCard
-          text={intelligence}
-          type="Intelligence"
-          skill={"intelligence"}
-        />
-        <StatCard text={luckiness} type="Luckiness" skill={"luckiness"} />
-        <LevelCard text={gold} type="Gold" />
-        <LevelCard text={level} type="Level" />
-        <LevelCard text={experience} type="Experience" />
-        <LevelCard
-          text={experienceToNextLevel}
-          type="Experience required to level up"
-        />
-        <LevelCard text={skillPoints} type="Skill Points" />
-      </div>
+      <Character />
       {/* CRAFTING */}
       <div className="grid gap-4">
         <div className="bg-white p-4 rounded-lg shadow-md text-center">
@@ -130,14 +56,6 @@ const LayoutTwo = () => {
               updateOreCount={updateOreCount}
               updateWoodCount={updateWoodCount}
             />
-            {/* <CraftItemList
-              itemList={listOfItems}
-              oreCount={oreCount}
-              woodCount={woodCount}
-              updateOreCount={updateOreCount}
-              updateWoodCount={updateWoodCount}
-              updateItem={updateItem}
-            /> */}
           </div>
         </div>
       </div>

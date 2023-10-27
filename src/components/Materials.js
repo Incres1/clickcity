@@ -1,52 +1,18 @@
-// src/components/Materials.js
 import { useState, useEffect } from "react";
 
 const Materials = () => {
-  // Define initial values for Wood and ore counts & increments
+const useWood = () => {
   const [woodCount, setWoodCount] = useState(
     parseInt(localStorage.getItem("woodCount")) || 40000
-  );
-  const [oreCount, setOreCount] = useState(
-    parseInt(localStorage.getItem("oreCount")) || 40000
   );
 
   const [woodIncrement, setWoodIncrement] = useState(
     parseInt(localStorage.getItem("woodIncrement")) || 1
   );
-  const [oreIncrement, setOreIncrement] = useState(
-    parseInt(localStorage.getItem("oreIncrement")) || 1
-  );
 
-  // RARE MATERIALS
-  const [leaf, setLeaf] = useState(
-    parseInt(localStorage.getItem("leaf")) || 400
-  );
-  const [gem, setGem] = useState(parseInt(localStorage.getItem("gem")) || 400);
-
-  // RANDOM NUMBER GENERATOR
-  const generateRandomNumber = (threshold) => {
-    var randomNumber = Math.floor(Math.random() * threshold) + 1;
-    return randomNumber;
-  };
-
-  // COSTS
-  const [axeCost, setAxeCost] = useState(
-    parseInt(localStorage.getItem("axeCost")) || 40
-  );
-
-  const [pickaxeCost, setPickaxeCost] = useState(
-    parseInt(localStorage.getItem("pickaxeCost")) || 40
-  );
-
-  // Update functions for materials
   const updateWoodCount = (newCount) => {
     setWoodCount(newCount);
     localStorage.setItem("woodCount", newCount);
-  };
-
-  const updateOreCount = (newCount) => {
-    setOreCount(newCount);
-    localStorage.setItem("oreCount", newCount);
   };
 
   const updateWoodIncrement = (newCount) => {
@@ -54,10 +20,45 @@ const Materials = () => {
     localStorage.setItem("woodIncrement", newCount);
   };
 
+  useEffect(() => {
+    localStorage.setItem("woodCount", woodCount);
+  }, [woodCount]);
+
+  return { woodCount, woodIncrement, updateWoodCount, updateWoodIncrement };
+};
+
+const useOre = () => {
+  const [oreCount, setOreCount] = useState(
+    parseInt(localStorage.getItem("oreCount")) || 40000
+  );
+
+  const [oreIncrement, setOreIncrement] = useState(
+    parseInt(localStorage.getItem("oreIncrement")) || 1
+  );
+
+  const updateOreCount = (newCount) => {
+    setOreCount(newCount);
+    localStorage.setItem("oreCount", newCount);
+  };
+
   const updateOreIncrement = (newCount) => {
     setOreIncrement(newCount);
     localStorage.setItem("oreIncrement", newCount);
   };
+
+  useEffect(() => {
+    localStorage.setItem("oreCount", oreCount);
+  }, [oreCount]);
+
+  return { oreCount, oreIncrement, updateOreCount, updateOreIncrement };
+};
+
+const useRareMaterials = () => {
+  const [leaf, setLeaf] = useState(
+    parseInt(localStorage.getItem("leaf")) || 400
+  );
+
+  const [gem, setGem] = useState(parseInt(localStorage.getItem("gem")) || 400);
 
   const updateLeafCount = (newCount) => {
     setLeaf(newCount);
@@ -69,7 +70,23 @@ const Materials = () => {
     localStorage.setItem("gem", newCount);
   };
 
-  // Update functions for costs
+  useEffect(() => {
+    localStorage.setItem("leaf", leaf);
+    localStorage.setItem("gem", gem);
+  }, [leaf, gem]);
+
+  return { leaf, gem, updateLeafCount, updateGemCount };
+};
+
+const useMaterialCosts = () => {
+  const [axeCost, setAxeCost] = useState(
+    parseInt(localStorage.getItem("axeCost")) || 40
+  );
+
+  const [pickaxeCost, setPickaxeCost] = useState(
+    parseInt(localStorage.getItem("pickaxeCost")) || 40
+  );
+
   const updateAxeCost = (newCount) => {
     setAxeCost(newCount);
     localStorage.setItem("axeCost", newCount);
@@ -81,32 +98,18 @@ const Materials = () => {
   };
 
   useEffect(() => {
-    // Update the local storage when resourceCounts change
-    localStorage.setItem("woodCount", woodCount);
-    localStorage.setItem("oreCount", oreCount);
-    localStorage.setItem("leaf", leaf);
-    localStorage.setItem("gem", gem);
-  }, [woodCount, oreCount, leaf, gem]);
+    localStorage.setItem("axeCost", axeCost);
+    localStorage.setItem("pickaxeCost", pickaxeCost);
+  }, [axeCost, pickaxeCost]);
 
-  return {
-    woodCount,
-    oreCount,
-    woodIncrement,
-    oreIncrement,
-    leaf,
-    gem,
-    axeCost,
-    pickaxeCost,
-    generateRandomNumber,
-    updateWoodCount,
-    updateOreCount,
-    updateWoodIncrement,
-    updateOreIncrement,
-    updateLeafCount,
-    updateGemCount,
-    updateAxeCost,
-    updatePickaxeCost,
-  };
+  return { axeCost, pickaxeCost, updateAxeCost, updatePickaxeCost };
 };
 
+return {
+  useWood,
+  useOre,
+  useRareMaterials,
+  useMaterialCosts,
+}
+}
 export default Materials;

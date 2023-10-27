@@ -1,6 +1,5 @@
 import React from "react";
 import Materials from "./Materials";
-import Character from "./Character";
 import ProgressBar from "./ProgressBar";
 import ClickButton from "./ClickButton";
 import UpgradeButton from "./UpgradeButton";
@@ -10,30 +9,25 @@ import ResourceGain from "./ResourceGain";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useState, useEffect } from "react";
+import useCharacter from "./useCharacter"; // Import the useCharacter hook
+import generateRandomNumber from "./GenerateRandom";
 
 const LayoutOne = () => {
   const [intervalId, setIntervalId] = useState(null);
+  const character = useCharacter(); // Use the useCharacter hook
+
   const { handleResourceGain } = ResourceGain();
-  const {
-    woodCount,
-    oreCount,
-    woodIncrement,
-    oreIncrement,
-    leaf,
-    gem,
-    generateRandomNumber,
-    axeCost,
-    pickaxeCost,
-    updateWoodCount,
-    updateOreCount,
-    updateWoodIncrement,
-    updateOreIncrement,
-    updateLeafCount,
-    updateGemCount,
-    updateAxeCost,
-    updatePickaxeCost,
-  } = Materials();
-  const { gainExperience, experience, experienceToNextLevel } = Character();
+  const { useWood, useOre, useRareMaterials, useMaterialCosts } = Materials();
+  const { woodCount, woodIncrement, updateWoodCount, updateWoodIncrement } =
+    useWood();
+
+  const { oreCount, oreIncrement, updateOreCount, updateOreIncrement } =
+    useOre();
+
+  const { leaf, gem, updateLeafCount, updateGemCount } = useRareMaterials();
+
+  const { axeCost, pickaxeCost, updateAxeCost, updatePickaxeCost } =
+    useMaterialCosts();
 
   const {
     updateBuilding,
@@ -45,7 +39,7 @@ const LayoutOne = () => {
     eligibleForIncrement,
   } = Buildings();
 
-  //TOAST CONTAINER
+  // TOAST CONTAINER
 
   const showToastMessage = (message, type) => {
     if (type === "error") {
@@ -61,42 +55,33 @@ const LayoutOne = () => {
     }
   };
 
-  //TIMER
+  // TIMER
   useEffect(() => {
-    localStorage.setItem("experience", experience);
     // Start the timer when the component mounts
     if (eligibleForIncrement()) {
       const id = setInterval(() => {
-        // This function will be called every second
-        localStorage.setItem("experience", experience);
         handleResourceGain(
-          updateLeafCount,
+          updateLeafCount(1),
           leaf,
           "Leaf",
-          gainExperience,
+          character.gainExperience(1),
           showToastMessage,
           listOfBuildings.lumbermill.count *
             listOfBuildings.lumbermill.woodIncrement,
-          updateWoodCount,
+          updateWoodCount(useWood.woodIncrement),
           woodCount
         );
 
         handleResourceGain(
-          updateGemCount,
+          updateGemCount(1),
           gem,
           "Gem",
-          gainExperience,
+          character.gainExperience(1),
           showToastMessage,
           listOfBuildings.mine.count * listOfBuildings.mine.oreIncrement,
-          updateOreCount,
+          updateOreCount(oreIncrement),
           oreCount
         );
-        /* localStorage.setItem("woodCount", woodCount);
-        localStorage.setItem("oreCount", oreCount);
-        localStorage.setItem("leaf", leaf);
-        localStorage.setItem("gem", gem); */
-        // Call your desired function here
-        // For example: myFunctionToCallEverySecond();
       }, 1000 / buildingsLevel);
 
       // Save the interval ID in the state
@@ -105,9 +90,9 @@ const LayoutOne = () => {
       // Clean up the interval when the component unmounts
       return () => clearInterval(id);
     }
-  }, [woodCount, oreCount, leaf, gem]);
+  }, [woodCount, oreCount]);
 
-  //GAME
+  // GAME
 
   return (
     <div className="grid h-screen grid-rows-2 grid-cols-2 gap-4">
@@ -123,7 +108,7 @@ const LayoutOne = () => {
           updateRareMaterials={updateLeafCount}
           rareMaterial={leaf}
           rareMaterialType="Leaf"
-          gainExperience={gainExperience}
+          gainExperience={character.gainExperience}
         />
         <ClickButton
           text="Ore"
@@ -135,7 +120,7 @@ const LayoutOne = () => {
           updateRareMaterials={updateGemCount}
           rareMaterial={gem}
           rareMaterialType="Gem"
-          gainExperience={gainExperience}
+          gainExperience={character.gainExperience}
         />
 
         {/* Pass the cost as a number (not a string) */}
@@ -162,9 +147,9 @@ const LayoutOne = () => {
       </div>
       <div className="grid grid-cols-5 grid-rows-1">
         <ProgressBar
-          experience={experience} // Pass character's experience
-          experienceToNextLevel={experienceToNextLevel} // Pass character's experienceToNextLevel
-          gainExperience={gainExperience} // Pass the gainExperience function
+          experience={character.experience} // Pass character's experience
+          experienceToNextLevel={character.experienceToNextLevel} // Pass character's experienceToNextLevel
+          gainExperience={character.gainExperience} // Pass the gainExperience function
         />
       </div>
       <div>
