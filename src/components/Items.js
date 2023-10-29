@@ -10,6 +10,7 @@ const Items = () => {
       wood: 200,
       ore: 100,
       value: 5,
+      equipped: false,
     },
     simpleShield: {
       name: "Simple Shield",
@@ -18,6 +19,7 @@ const Items = () => {
       wood: 200,
       ore: 100,
       value: 5,
+      equipped: false,
     },
     luckyCharm: {
       name: "Lucky Charm",
@@ -26,6 +28,7 @@ const Items = () => {
       gem: 50,
       leaf: 50,
       value: 100,
+      equipped: false,
     },
     // Add more items here
   };
@@ -60,20 +63,59 @@ const Items = () => {
         break;
     }    
   };
+  const equipItem = (itemName) => {
+    const updatedList = { ...listOfItems };
+    switch (itemName.name) {
+      case "Simple Sword":
+        updatedList.simpleSword.equipped = true;
+        updateItemList(updatedList);
+        break;
+      case "Simple Shield":
+        updatedList.simpleShield.equipped = true;
+        updateItemList(updatedList);
+        break;
+      case "Lucky Charm":
+        updatedList.luckyCharm.equipped = true;
+        updateItemList(updatedList);
+        break;
+      default:
+        break;
+    }    
+  };
+
+  const unequipItem = (itemName) => {
+    const updatedList = { ...listOfItems };
+    switch (itemName.name) {
+      case "Simple Sword":
+        updatedList.simpleSword.equipped = false;
+        updateItemList(updatedList);
+        break;
+      case "Simple Shield":
+        updatedList.simpleShield.equipped = false;
+        updateItemList(updatedList);
+        break;
+      case "Lucky Charm":
+        updatedList.luckyCharm.equipped = false;
+        updateItemList(updatedList);
+        break;
+      default:
+        break;
+    }    
+  };
   const getStats = () => {
     let strengthFromItems = 0;
     let healthFromItems = 0;
     let luckFromitems = 0;
     for (const key in listOfItems) {
-      if (listOfItems[key].count > 0) {
+      if (listOfItems[key].equipped === true) {
         if (listOfItems[key].strength) {
-        strengthFromItems += listOfItems[key].strength * listOfItems[key].count;
+        strengthFromItems += listOfItems[key].strength;
         }
         if (listOfItems[key].health) {
-          healthFromItems += listOfItems[key].health * listOfItems[key].count;
+          healthFromItems += listOfItems[key].health;
         }
         if (listOfItems[key].luck) {
-          luckFromitems += listOfItems[key].luck * listOfItems[key].count;
+          luckFromitems += listOfItems[key].luck;
         }
         
       }
@@ -96,6 +138,8 @@ const Items = () => {
     healthFromItems,
     strengthFromItems,
     luckFromitems,
+    equipItem,
+    unequipItem,
   };
 };
 

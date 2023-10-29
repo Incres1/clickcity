@@ -83,12 +83,14 @@ const LayoutTwo = () => {
           skill={"strength"}
           statsFromItems={strengthFromItems}
           skillAllocation={skillAllocation}
+          skillPoints={skillPoints}
         />
         <StatCard
           text={dexterity}
           type="Dexterity"
           skill={"dexterity"}
           skillAllocation={skillAllocation}
+          skillPoints={skillPoints}
         />
         <StatCard
           text={health}
@@ -96,12 +98,14 @@ const LayoutTwo = () => {
           skill={"health"}
           statsFromItems={healthFromItems}
           skillAllocation={skillAllocation}
+          skillPoints={skillPoints}
         />
         <StatCard
           text={intelligence}
           type="Intelligence"
           skill={"intelligence"}
           skillAllocation={skillAllocation}
+          skillPoints={skillPoints}
         />
         <StatCard
           text={luckiness}
@@ -109,6 +113,7 @@ const LayoutTwo = () => {
           skill={"luckiness"}
           statsFromItems={luckFromitems}
           skillAllocation={skillAllocation}
+          skillPoints={skillPoints}
         />
         <LevelCard text={gold} type="Gold" />
         <LevelCard text={level} type="Level" />

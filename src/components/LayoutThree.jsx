@@ -8,6 +8,8 @@ const LayoutThree = () => {
     healthFromItems,
     strengthFromItems,
     luckFromitems,
+    equipItem,
+    unequipItem,
   } = Items();
   const {
     strength,
@@ -31,6 +33,8 @@ const LayoutThree = () => {
           updateItem={updateItem}
           gold={gold}
           updateGold={updateGold}
+          equipItem={equipItem}
+          unequipItem={unequipItem}
         />
       </div>
     </div>

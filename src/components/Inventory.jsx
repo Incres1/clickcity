@@ -1,7 +1,14 @@
 import React from "react";
 import DisplayItem from "./DisplayItem";
 
-const Inventory = ({ listOfItems, updateItem, gold, updateGold }) => {
+const Inventory = ({
+  listOfItems,
+  updateItem,
+  gold,
+  updateGold,
+  equipItem,
+  unequipItem,
+}) => {
   return (
     <div className="flex space-x-2">
       {Object.values(listOfItems).map((item) => {
@@ -12,6 +19,8 @@ const Inventory = ({ listOfItems, updateItem, gold, updateGold }) => {
               updateItem={updateItem}
               gold={gold}
               updateGold={updateGold}
+              equipItem={equipItem}
+              unequipItem={unequipItem}
             />
           );
         }
