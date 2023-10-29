@@ -3,7 +3,7 @@ import DisplayItem from "./DisplayItem";
 
 const Inventory = ({ listOfItems, updateItem, gold, updateGold }) => {
   return (
-    <div className="flex">
+    <div className="flex space-x-2">
       {Object.values(listOfItems).map((item) => {
         if (item.count > 0) {
           return (
