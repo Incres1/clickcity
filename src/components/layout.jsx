@@ -29,7 +29,7 @@ const Layout = ({ children }) => {
             onClick={() => handleButtonClick(<LayoutTwo />)}
           />
           <ColumnButton
-            text="Inventory"
+            text="Inventory & Shop"
             onClick={() => handleButtonClick(<LayoutThree />)}
           />
           <ColumnButton
