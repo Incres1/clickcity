@@ -9,6 +9,9 @@ const StatCard = ({
 }) => {
   useState(skill || 0);
   const actualskill = skill;
+  if (statsFromItems === undefined) {
+    statsFromItems = 0;
+  }
   const skillValue = text + statsFromItems;
   const handleLevelSkillAllocation = () => {
     skillAllocation(actualskill);
@@ -17,7 +20,7 @@ const StatCard = ({
   return (
     <div className="max-content">
       <div className="bg-white p-4 rounded-lg shadow-md text-center">
-        <div className="text-2xl font-semibold">{skillValue || 0}</div>
+        <div className="text-2xl font-semibold">{skillValue}</div>
         <div className="text-gray-600">{type}</div>
         {skillPoints > 0 && (
           <button

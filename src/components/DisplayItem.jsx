@@ -38,14 +38,6 @@ const DisplayItem = ({
       <div className="px-5 pb-5">
         <div className="flex">
           <h5 className="text-xl font-semibold tracking-tight">{item.name}</h5>
-          <button
-            onClick={() =>
-              item.equipped ? handleUnequipItem() : handleEquipItem()
-            }
-            className="text-white bg-blue-700 hover-bg-blue-800 transition duration-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-          >
-            {item.equipped ? "Unequip" : "Equip"}
-          </button>
         </div>
 
         <div class="flex items-center justify-between">
@@ -56,14 +48,22 @@ const DisplayItem = ({
           </span>
           <div className="flex flex-col space-y-2">
             <button
+              onClick={() =>
+                item.equipped ? handleUnequipItem() : handleEquipItem()
+              }
+              className="text-white bg-blue-700 hover-bg-blue-800 transition duration-300 font-medium rounded-lg text-sm py-2.5 text-center w-20 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            >
+              {item.equipped ? "Unequip" : "Equip"}
+            </button>
+            <button
               onClick={handleSell}
-              class="text-white bg-blue-700 hover:bg-blue-800 transition duration-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              class="text-white bg-blue-700 hover:bg-blue-800 transition duration-300 font-medium rounded-lg text-sm py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             >
               Sell
             </button>
             <button
               onClick={handleSellAll}
-              class="text-white bg-blue-700 hover:bg-blue-800 transition duration-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              class="text-white bg-blue-700 hover:bg-blue-800 transition duration-300 font-medium rounded-lg text-sm py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             >
               Sell All
             </button>

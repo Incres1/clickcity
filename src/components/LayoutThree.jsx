@@ -22,7 +22,7 @@ const LayoutThree = () => {
   } = Character();
   return (
     <div className="border-gray-500">
-      <div className="flex items-center">
+      <div className="flex items-center w-20">
         <div className="text-5xl font-bold">Gold: </div>
         <div className="text-4xl font-bold pt-2">{gold}</div>
       </div>
