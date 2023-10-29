@@ -17,7 +17,7 @@ const DisplayItem = ({ item, updateItem, gold, updateGold }) => {
     }
   };
   return (
-    <div class="w-full bg-white border border-gray-200 rounded-lg shadow dark:border-gray-700 mt-2">
+    <div class="w-full bg-white border border-gray-200 rounded-lg shadow-lg dark:border-gray-700 mt-2">
       <div class="px-5 pb-5">
         <h5 class="text-xl font-semibold tracking-tight">{item.name}</h5>
         <div class="flex items-center justify-between">

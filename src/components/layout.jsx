@@ -5,6 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 import ColumnButton from "./ColumnButton";
 import LayoutOne from "./LayoutOne";
 import LayoutTwo from "./LayoutTwo";
+import LayoutThree from "./LayoutThree";
 
 const Layout = ({ children }) => {
   const [selectedContent, setSelectedContent] = useState("");
@@ -25,6 +26,10 @@ const Layout = ({ children }) => {
           <ColumnButton
             text="Character/Crafting"
             onClick={() => handleButtonClick(<LayoutTwo />)}
+          />
+          <ColumnButton
+            text="Inventory"
+            onClick={() => handleButtonClick(<LayoutThree />)}
           />
           {/* Add more buttons as needed */}
         </div>

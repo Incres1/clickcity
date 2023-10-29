@@ -8,7 +8,8 @@ import { BiSolidLeaf } from "react-icons/bi";
 import { FaGem } from "react-icons/fa";
 import { useState } from "react";
 import ListOfItems from "./ListOfItems";
-import Inventory from "./Inventory";
+import LevelCard from "./LevelCard";
+import StatCard from "./StatCard";
 
 const LayoutTwo = () => {
   // MATERIALS
@@ -40,7 +41,6 @@ const LayoutTwo = () => {
     experience,
     experienceToNextLevel,
     skillPoints,
-    updateGold,
     skillAllocation,
   } = Character();
 
@@ -61,43 +61,8 @@ const LayoutTwo = () => {
   };
 
   // CARD FOR DISPLAYING SKILLS
-  const StatCard = ({ text, type, skill, statsFromItems }) => {
-    useState(skill || 0);
-    const actualskill = skill;
-
-    const handleLevelSkillAllocation = () => {
-      skillAllocation(actualskill);
-    };
-
-    return (
-      <div className="max-content">
-        <div className="bg-white p-4 rounded-lg shadow-md text-center">
-          <div className="text-2xl font-semibold">
-            {text} (+{statsFromItems})
-          </div>
-          <div className="text-gray-600">{type}</div>
-          <button
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-            onClick={handleLevelSkillAllocation}
-          >
-            +
-          </button>
-        </div>
-      </div>
-    );
-  };
 
   //CARD FOR DISPLAYING OTHER CHARACTER DETAILS
-  const LevelCard = ({ text, type }) => {
-    return (
-      <div className="max-content flex-wrap">
-        <div className="bg-white p-4 rounded-lg shadow-md text-center">
-          <div className="text-2xl font-semibold">{text}</div>
-          <div className="text-gray-600">{type}</div>
-        </div>
-      </div>
-    );
-  };
 
   return (
     /* MATERIALS */
@@ -117,24 +82,33 @@ const LayoutTwo = () => {
           type="Strength"
           skill={"strength"}
           statsFromItems={strengthFromItems}
+          skillAllocation={skillAllocation}
         />
-        <StatCard text={dexterity} type="Dexterity" skill={"dexterity"} />
+        <StatCard
+          text={dexterity}
+          type="Dexterity"
+          skill={"dexterity"}
+          skillAllocation={skillAllocation}
+        />
         <StatCard
           text={health}
           type="Health"
           skill={"health"}
           statsFromItems={healthFromItems}
+          skillAllocation={skillAllocation}
         />
         <StatCard
           text={intelligence}
           type="Intelligence"
           skill={"intelligence"}
+          skillAllocation={skillAllocation}
         />
         <StatCard
           text={luckiness}
           type="Luckiness"
           skill={"luckiness"}
           statsFromItems={luckFromitems}
+          skillAllocation={skillAllocation}
         />
         <LevelCard text={gold} type="Gold" />
         <LevelCard text={level} type="Level" />
@@ -163,19 +137,6 @@ const LayoutTwo = () => {
               updateWoodCount={updateWoodCount}
             />
           </div>
-        </div>
-      </div>
-
-      {/* EQUIPPING */}
-      <div className="grid gap-4">
-        <div className="bg-white p-4 rounded-lg shadow-md text-center">
-          <div className="text-2xl font-semibold">Your Inventory:</div>
-          <Inventory
-            listOfItems={listOfItems}
-            updateItem={updateItem}
-            gold={gold}
-            updateGold={updateGold}
-          />
         </div>
       </div>
     </div>
