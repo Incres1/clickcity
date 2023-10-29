@@ -6,6 +6,7 @@ import ColumnButton from "./ColumnButton";
 import LayoutOne from "./LayoutOne";
 import LayoutTwo from "./LayoutTwo";
 import LayoutThree from "./LayoutThree";
+import LayoutFour from "./LayoutFour";
 
 const Layout = ({ children }) => {
   const [selectedContent, setSelectedContent] = useState("");
@@ -24,12 +25,16 @@ const Layout = ({ children }) => {
             onClick={() => handleButtonClick(<LayoutOne />)}
           />
           <ColumnButton
-            text="Character/Crafting"
+            text="Crafting"
             onClick={() => handleButtonClick(<LayoutTwo />)}
           />
           <ColumnButton
             text="Inventory"
             onClick={() => handleButtonClick(<LayoutThree />)}
+          />
+          <ColumnButton
+            text="Stats"
+            onClick={() => handleButtonClick(<LayoutFour />)}
           />
           {/* Add more buttons as needed */}
         </div>

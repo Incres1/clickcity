@@ -8,18 +8,10 @@ import { BiSolidLeaf } from "react-icons/bi";
 import { FaGem } from "react-icons/fa";
 import { useState } from "react";
 import ListOfItems from "./ListOfItems";
-import LevelCard from "./LevelCard";
-import StatCard from "./StatCard";
 
 const LayoutTwo = () => {
   // MATERIALS
-  const {
-    listOfItems,
-    updateItem,
-    healthFromItems,
-    strengthFromItems,
-    luckFromitems,
-  } = Items();
+  const { listOfItems, updateItem } = Items();
   const {
     woodCount,
     oreCount,
@@ -30,19 +22,6 @@ const LayoutTwo = () => {
     updateGemCount,
     updateLeafCount,
   } = Materials();
-  const {
-    strength,
-    dexterity,
-    health,
-    intelligence,
-    luckiness,
-    gold,
-    level,
-    experience,
-    experienceToNextLevel,
-    skillPoints,
-    skillAllocation,
-  } = Character();
 
   // CARD FOR DISPLAYING MATERIALS
   const Card = ({ text, type, icon }) => {
@@ -68,62 +47,13 @@ const LayoutTwo = () => {
     /* MATERIALS */
 
     <div className="grid h-screen grid-cols-2 gap-4">
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-2 gap-4 h-20">
         <Card text={woodCount} type="Wood" icon={<GiWoodPile size={80} />} />
         <Card text={oreCount} type="Ore" icon={<GiMinerals size={80} />} />
         <Card text={leaf} type="Leaf" icon={<BiSolidLeaf size={80} />} />
         <Card text={gem} type="Gem" icon={<FaGem size={80} />} />
       </div>
 
-      {/* CHARACTER */}
-      <div className="grid grid-cols-4 gap-4">
-        <StatCard
-          text={strength}
-          type="Strength"
-          skill={"strength"}
-          statsFromItems={strengthFromItems}
-          skillAllocation={skillAllocation}
-          skillPoints={skillPoints}
-        />
-        <StatCard
-          text={dexterity}
-          type="Dexterity"
-          skill={"dexterity"}
-          skillAllocation={skillAllocation}
-          skillPoints={skillPoints}
-        />
-        <StatCard
-          text={health}
-          type="Health"
-          skill={"health"}
-          statsFromItems={healthFromItems}
-          skillAllocation={skillAllocation}
-          skillPoints={skillPoints}
-        />
-        <StatCard
-          text={intelligence}
-          type="Intelligence"
-          skill={"intelligence"}
-          skillAllocation={skillAllocation}
-          skillPoints={skillPoints}
-        />
-        <StatCard
-          text={luckiness}
-          type="Luckiness"
-          skill={"luckiness"}
-          statsFromItems={luckFromitems}
-          skillAllocation={skillAllocation}
-          skillPoints={skillPoints}
-        />
-        <LevelCard text={gold} type="Gold" />
-        <LevelCard text={level} type="Level" />
-        <LevelCard text={experience} type="Experience" />
-        <LevelCard
-          text={experienceToNextLevel}
-          type="Experience required to level up"
-        />
-        <LevelCard text={skillPoints} type="Skill Points" />
-      </div>
       {/* CRAFTING */}
       <div className="grid gap-4">
         <div className="bg-white p-4 rounded-lg shadow-md text-center">
