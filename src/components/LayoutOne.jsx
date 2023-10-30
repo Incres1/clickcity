@@ -110,7 +110,7 @@ const LayoutOne = () => {
   //GAME
 
   return (
-    <div className="grid h-screen grid-rows-2 grid-cols-2 gap-4">
+    <div className="grid h-screen gap-4">
       <div className="grid grid-cols-2 gap-4">
         {/* Pass initial values as props */}
         <ClickButton

@@ -17,7 +17,7 @@ const Layout = ({ children }) => {
   return (
     <div className="flex max-content">
       {/* Left Side Column */}
-      <div className="w-1/4 h-screen bg-gray-200 p-4 space-y-4">
+      <div className="h-screen p-4 space-y-4">
         {/* Add your left-side content here */}
         <div className="grid space-y-4">
           <ColumnButton

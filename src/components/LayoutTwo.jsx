@@ -55,7 +55,7 @@ const LayoutTwo = () => {
       </div>
 
       {/* CRAFTING */}
-      <div className="grid gap-4">
+      <div className="grid h-20 gap-4">
         <div className="bg-white p-4 rounded-lg shadow-md text-center">
           <div className="text-2xl font-semibold">Crafting</div>
           <div className="text-gray-600">
